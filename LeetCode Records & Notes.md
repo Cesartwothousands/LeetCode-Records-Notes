@@ -1,3 +1,5 @@
+[TOC]
+
 ## Word Lists
 
 enumerate 枚举
@@ -17,6 +19,18 @@ increment 增加
 brackets 括号
 
 traverse 遍历
+
+
+
+
+
+
+
+
+
+
+
+------
 
 # Grind 75
 
