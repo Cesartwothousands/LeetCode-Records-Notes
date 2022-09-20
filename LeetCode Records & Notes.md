@@ -309,6 +309,127 @@ def isValid(s: str) -> bool:
 
 
 
+## (21) Merge Two Sorted Lists
+
+### Content
+
+Two sorted lists *list1* and *list2*
+
+The list should be made by splicing together the nodes of the first two lists.
+
+
+
+### Try1
+
+Use Stack
+
+Try list first, use trans def
+
+```python
+def LtoL(linkedNode):
+l=[]
+while linkedNode:
+l.append(linkedNode.val)  
+linkedNode= linkedNode.next
+return l                   
+
+def list2link(List):
+if List == []:
+return None
+
+head = ListNode(List[0])
+p = head
+for i in range(1, len(List)):
+p.next = ListNode(List[i])
+p = p.next
+return head
+```
+
+while(len(l1) >0 and len(l2) >0):
+
+​	if l1[i] <= l2[j]:
+
+​		res.append()
+
+​		pop(0)
+
+​	else
+
+​		......
+
+if len(l1)==0:
+
+​	res.append(l2)
+
+
+
+return res
+
+### Solutions
+
+Check if any of the lists is empty.
+
+Use LinkedList
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        l1 = list1
+        l2 = list2
+        
+        if l1 is None:
+            return l2
+        if l2 is None:
+            return l1
+        # Choose head which is smaller of the two lists
+        if l1.val < l2.val:
+            temp = head = ListNode(l1.val)
+            l1 = l1.next
+        else:
+            temp = head = ListNode(l2.val)
+            l2 = l2.next
+        # Loop until any of the list becomes null
+        while l1 is not     None and l2 is not None:
+            if l1.val < l2.val:
+                temp.next = ListNode(l1.val)
+                l1 = l1.next
+            else:
+                temp.next = ListNode(l2.val)
+                l2 = l2.next
+            temp = temp.next
+        # Add all the nodes in l1, if remaining
+        while l1 is not None:
+            temp.next = ListNode(l1.val)
+            l1 = l1.next
+            temp = temp.next
+        # Add all the nodes in l2, if remaining
+        while l2 is not None:
+            temp.next = ListNode(l2.val)
+            l2 = l2.next
+            temp = temp.next
+        return head
+```
+
+Time: For travesing and assigning value both lists, $O(m+n)$
+
+Space: $O(1)$
+
+### Review
+
+```
+class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+```
+
+
+
 # LeetCode Everyday
 
 ## **(18)** 4Sum
