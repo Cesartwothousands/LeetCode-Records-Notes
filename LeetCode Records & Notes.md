@@ -514,3 +514,79 @@ TwoSum function:
 - Boundaries 
   - Number of num
   - Most special: target // 2 + target // 2 = target
+
+## (985) Sum of Even Numbers After Queries
+
+### Content
+
+```
+Input: nums = [1,2,3,4], queries = [[1,0],[-3,1],[-4,0],[2,3]]
+Output: [8,6,2,4]
+Explanation: At the beginning, the array is [1,2,3,4].
+After adding 1 to nums[0], the array is [2,2,3,4], and the sum of even values is 2 + 2 + 4 = 8.
+After adding -3 to nums[1], the array is [2,-1,3,4], and the sum of even values is 2 + 4 = 6.
+After adding -4 to nums[0], the array is [-2,-1,3,4], and the sum of even values is -2 + 4 = 2.
+After adding 2 to nums[3], the array is [-2,-1,3,6], and the sum of even values is -2 + 6 = 4.
+```
+
+### Try1
+
+def A:
+
+if integer is even, append(1), [[nums[i], bool], XX, XX, XX]
+
+def B:
+
+if  ( $A[i][2]$ ):
+
+sum
+
+
+
+for i in range(len())
+
+​	if odd and A[] [] == 0 
+
+​			change A[] []
+
+​	elif even
+
+......
+
+Change bool first
+
+do the sum later
+
+
+
+```python
+class Solution:
+    def sumEvenAfterQueries(self, nums: List[int], queries: List[List[int]]) -> List[int]:
+        res = []
+        Nums = []
+        
+        for i in range(len(nums)):
+            temp = []
+            temp.append(nums[i])
+            temp.append(nums[i] % 2)
+            # even for bool 0
+            Nums.append(temp)
+  
+        for i in range(len(nums)):
+            sum = 0
+
+            Nums[queries[i][1]][0] = Nums[queries[i][1]][0] + queries[i][0]
+         
+            if queries[i][0] % 2 :
+                Nums[queries[i][1]][1] = int(not Nums[queries[i][1]][1])
+               
+            for i in range(len(nums)):
+                if not Nums[i][1] :
+                    sum += Nums[i][0]
+            res.append(sum)   
+        
+        return res
+```
+
+**Time Limit Exceeded**
+
