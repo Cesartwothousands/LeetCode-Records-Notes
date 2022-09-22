@@ -428,6 +428,105 @@ class ListNode:
 #         self.next = next
 ```
 
+## (121) Best Time to Buy and Sell Stock
+
+### Content
+
+**Example 1:**
+
+```python
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+```
+
+If you can't have a profit, return 0
+
+### Try1
+
+Brute: (n-1 + 1) n / 2            $O(n^2)$
+
+for i in range(len())
+
+​	temp = p[0]
+
+​	p.pop(0)	
+
+​	res = max(p) - temp
+
+``` python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        temp = 0
+        res = 0
+        Res = 0
+        p = []
+        p = p + prices
+        
+        for i in range(len(prices)-1) :
+            temp = prices[i]
+            p.pop(0)
+            if temp <= max(p):
+                res = max(p) - temp
+            if res > Res:
+                Res = res
+        
+        return Res
+```
+
+Time Limit Exceeded
+
+### Try2
+
+int 3 variables, actually 2
+
+num: real time num
+
+Min: lowest in traverse, it will only decrase
+
+
+
+res = num - Min
+
+if res > Res, Res = res
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        res = 0
+        Res = 0
+        Min = prices[0]
+        
+        for i in range(len(prices)):
+            
+            if i > 0:
+                if prices[i] < prices[i-1] and prices[i] < Min:
+                    Min = prices[i]
+                
+            res = prices[i] - Min  
+            
+            Res =max(Res,res)
+            
+        return Res
+```
+
+ ### Solutions
+
+### Review
+
+```
+if res > Res:
+                Res = res
+#### Can be optimized as:
+                
+Res =max(Res,res)
+```
+
+
+
+
+
 
 
 # LeetCode Everyday
