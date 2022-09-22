@@ -590,3 +590,130 @@ class Solution:
 
 **Time Limit Exceeded**
 
+### Solutions
+
+#### Approach 1: Maintain Array Sum
+
+```python
+class Solution(object):
+    def sumEvenAfterQueries(self, A, queries):
+        S = sum(x for x in A if x % 2 == 0)
+        ans = []
+
+        for x, k in queries:
+            if A[k] % 2 == 0: S -= A[k]
+            A[k] += x
+            if A[k] % 2 == 0: S += A[k]
+            ans.append(S)
+
+        return ans
+```
+
+Brute Force
+
+faster than 8.64% of Python3 online submissions
+
+#### Better speed
+
+```python
+class Solution:
+    def sumEvenAfterQueries(self, nums: List[int], queries: List[List[int]]) -> List[int]:
+        lst=[]
+        su=0
+        for k in nums:
+            if k%2==0:
+                su+=k
+        for x,y in queries:
+            if nums[y]%2==0:
+                su-=nums[y]
+            nums[y]+=x
+            if nums[y]%2==0:
+                su+=nums[y]
+            lst.append(su)
+        return lst
+```
+
+faster than 96.44%
+
+### Review
+
+
+
+## (557) Reverse Words in a String III
+
+### Content
+
+**Example 1:**
+
+```
+Input: s = "Let's take LeetCode contest"
+Output: "s'teL ekat edoCteeL tsetnoc"
+```
+
+**Example 2:**
+
+```
+Input: s = "God Ding"
+Output: "doG gniD"
+```
+
+### Try1
+
+res = []
+
+stack = []
+
+s.append(' ')
+
+
+
+for len()
+
+​	stack.appned
+
+​	if s[i] == [' ']
+
+​		for len(stack)
+
+​			res.append(stack[-1])
+
+​			stack.pop()
+
+
+
+res.pop(1)
+
+return res
+
+> Runtime: 306 ms, faster than 5.04% of Python3 online submissions for Reverse Words in a String III.
+
+### Try2
+
+``` python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        res = []
+        List = []
+        s = list(s)
+        s.append(' ')
+
+        stack = []
+        for i in range(len(s)):
+            stack.append(s[i])
+
+            if s[i] == ' ':
+                List.append(stack)
+                stack = []
+                
+        for l in List:
+            for j in range(len(l)):
+                res.append(l[-1])
+                l.pop()
+                    
+        res.pop(0)
+        res = ''.join(res)
+        return res
+```
+
+> Runtime: 116 ms, faster than 24.29% of Python3 online submissions for Reverse Words in a String III.
+
