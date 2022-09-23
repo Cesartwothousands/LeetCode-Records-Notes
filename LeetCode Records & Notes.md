@@ -523,7 +523,44 @@ if res > Res:
 Res =max(Res,res)
 ```
 
+## (409) Longest Palindrome
 
+### Content
+
+```python
+Input: s = "abccccdd"
+Output: 7
+Explanation: One longest palindrome that can be built is "dccaccd", whose length is 7.
+```
+
+### Try1
+
+Build a Hash Table
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        Hashmap = {}
+        l = []
+        res = 0
+        d = 0
+        
+        for i in range(len(s)):
+            if s[i] not in Hashmap:
+                Hashmap[s[i]] = 0
+            Hashmap[s[i]] += 1
+            
+        for i in Hashmap:
+            res += 2*(Hashmap[i]//2)
+            if Hashmap[i] % 2 :
+                d = 1
+        
+        if d:
+            return res + 1
+        return res
+```
+
+### Solutions
 
 
 
