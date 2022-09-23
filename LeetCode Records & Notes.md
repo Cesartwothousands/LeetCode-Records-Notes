@@ -826,3 +826,86 @@ However, there is another optimal approach to reverse the string in \mathcal{O}(
 
 
 
+## (1680) Concatenation of Consecutive Binary Numbers
+
+### Content
+
+```
+Input: n = 12
+Output: 505379714
+Explanation: The concatenation results in "1101110010111011110001001101010111100".
+The decimal value of that is 118505380540.
+After modulo 109 + 7, the result is 505379714.
+```
+
+### Try1
+
+```python
+class Solution:
+    def concatenatedBinary(self, n: int) -> int:
+        Len = []
+        Num = []
+        LL = 0
+        res = 0
+    
+        for i in range(n):
+            num = i + 1
+            Num.append(num)
+            b = ''
+            s = 1
+            while(num):
+                s = num // 2
+                y = num % 2
+                b = b + str(y)
+                num = s
+            
+            Len.append(len(b))
+
+        L = sum(Len)
+        
+        for i in range(len(Num)):
+            LL += Len[i]
+            res += Num[i] * pow(2, L-LL)
+        
+        res = res % 1000000007
+        return res
+```
+
+> Time Limit Exceeded
+
+### Solutions
+
+```python
+class Solution:
+    def concatenatedBinary(self, n: int) -> int:
+        bits, res, MOD = 1, 0, 10**9 + 7
+        for x in range(1, n + 1):
+            res = ((res << bits) + x) % MOD
+            if x == (1 << bits) - 1:
+                bits += 1    
+        return res
+```
+
+The bitwise left shift operator (`<<`) 
+
+> ((res << bits) + x)
+>
+> x for value
+
+
+```python
+class Solution:
+    def concatenatedBinary(self, n: int) -> int:
+        s = 0
+        for i in range(1, n+1):
+            s = (s << i.bit_length() | i) % 1000000007    
+        return s
+```
+
+### Review
+
+n & (n-1) == 0 to indentify is it a power of 2?
+
+100000000000
+
+011111111111
