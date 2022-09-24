@@ -523,44 +523,7 @@ if res > Res:
 Res =max(Res,res)
 ```
 
-## (409) Longest Palindrome
-
-### Content
-
-```python
-Input: s = "abccccdd"
-Output: 7
-Explanation: One longest palindrome that can be built is "dccaccd", whose length is 7.
-```
-
-### Try1
-
-Build a Hash Table
-
-```python
-class Solution:
-    def longestPalindrome(self, s: str) -> int:
-        Hashmap = {}
-        l = []
-        res = 0
-        d = 0
-        
-        for i in range(len(s)):
-            if s[i] not in Hashmap:
-                Hashmap[s[i]] = 0
-            Hashmap[s[i]] += 1
-            
-        for i in Hashmap:
-            res += 2*(Hashmap[i]//2)
-            if Hashmap[i] % 2 :
-                d = 1
-        
-        if d:
-            return res + 1
-        return res
-```
-
-### Solutions
+### 
 
 
 
@@ -946,3 +909,124 @@ n & (n-1) == 0 to indentify is it a power of 2?
 100000000000
 
 011111111111
+
+## (409) Longest Palindrome
+
+### Content
+
+```python
+Input: s = "abccccdd"
+Output: 7
+Explanation: One longest palindrome that can be built is "dccaccd", whose length is 7.
+```
+
+### Try1
+
+Build a Hash Table
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        Hashmap = {}
+        l = []
+        res = 0
+        d = 0
+        
+        for i in range(len(s)):
+            if s[i] not in Hashmap:
+                Hashmap[s[i]] = 0
+            Hashmap[s[i]] += 1
+            
+        for i in Hashmap:
+            res += 2*(Hashmap[i]//2)
+            if Hashmap[i] % 2 :
+                d = 1
+        
+        if d:
+            return res + 1
+        return res
+```
+
+### Solutions
+
+## (150) Evaluate Reverse Polish Notation
+
+### Content
+
+### Try1
+
+Stack
+
+```python
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        voc = []
+        temp = 0
+        res = 0
+        
+        for i in range(len(tokens)):  
+            if tokens[i] == "+":
+                temp = voc[-1] + voc[-2]
+                voc.pop()
+                voc.pop()
+                voc.append(temp)
+                
+            elif tokens[i] == '-':
+                temp = voc[-2] - voc[-1]
+                voc.pop()
+                voc.pop()
+                voc.append(temp)
+                
+            elif tokens[i] == '*':
+                temp = voc[-1] * voc[-2]
+                voc.pop()
+                voc.pop()
+                voc.append(temp)
+                
+            elif tokens[i] == '/':
+                temp = int(voc[-2] / voc[-1])
+                voc.pop()
+                voc.pop()
+                voc.append(temp)
+            
+            else:
+                tokens[i] = int(tokens[i])
+                voc.append(tokens[i])
+                
+        res = int(voc[0])
+        return res
+```
+
+## (226) Invert Binary Tree
+
+### Content
+
+Given the root of a binary tree, and return its root.
+
+```python
+Input: root = [4,2,7,1,3,6,9]
+Output: [4,7,2,9,6,3,1]
+```
+
+### Solutions
+
+```python
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        
+        if not root or (not root.left and not root.right):
+            return root
+##########################################################调换左右节点
+        tmp = root.left
+        root.left = root.right
+        root.right = tmp
+#########################################################
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        return root
+```
+
