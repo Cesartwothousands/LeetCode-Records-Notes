@@ -523,7 +523,79 @@ if res > Res:
 Res =max(Res,res)
 ```
 
-### 
+## (409) Longest Palindrome
+
+### Content
+
+```python
+Input: s = "abccccdd"
+Output: 7
+Explanation: One longest palindrome that can be built is "dccaccd", whose length is 7.
+```
+
+### Try1
+
+Build a Hash Table
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        Hashmap = {}
+        l = []
+        res = 0
+        d = 0
+        
+        for i in range(len(s)):
+            if s[i] not in Hashmap:
+                Hashmap[s[i]] = 0
+            Hashmap[s[i]] += 1
+            
+        for i in Hashmap:
+            res += 2*(Hashmap[i]//2)
+            if Hashmap[i] % 2 :
+                d = 1
+        
+        if d:
+            return res + 1
+        return res
+```
+
+### Solutions
+
+## (226) Invert Binary Tree
+
+### Content
+
+Given the root of a binary tree, and return its root.
+
+```python
+Input: root = [4,2,7,1,3,6,9]
+Output: [4,7,2,9,6,3,1]
+```
+
+### Solutions
+
+```python
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        
+        if not root or (not root.left and not root.right):
+            return root
+##########################################################调换左右节点
+        tmp = root.left
+        root.left = root.right
+        root.right = tmp
+#########################################################
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        return root
+```
+
+## ( )
 
 
 
@@ -910,45 +982,6 @@ n & (n-1) == 0 to indentify is it a power of 2?
 
 011111111111
 
-## (409) Longest Palindrome
-
-### Content
-
-```python
-Input: s = "abccccdd"
-Output: 7
-Explanation: One longest palindrome that can be built is "dccaccd", whose length is 7.
-```
-
-### Try1
-
-Build a Hash Table
-
-```python
-class Solution:
-    def longestPalindrome(self, s: str) -> int:
-        Hashmap = {}
-        l = []
-        res = 0
-        d = 0
-        
-        for i in range(len(s)):
-            if s[i] not in Hashmap:
-                Hashmap[s[i]] = 0
-            Hashmap[s[i]] += 1
-            
-        for i in Hashmap:
-            res += 2*(Hashmap[i]//2)
-            if Hashmap[i] % 2 :
-                d = 1
-        
-        if d:
-            return res + 1
-        return res
-```
-
-### Solutions
-
 ## (150) Evaluate Reverse Polish Notation
 
 ### Content
@@ -997,36 +1030,94 @@ class Solution:
         return res
 ```
 
-## (226) Invert Binary Tree
+## (112) Path Sum I
 
 ### Content
 
-Given the root of a binary tree, and return its root.
+Given the `root` of a binary tree 
 
-```python
-Input: root = [4,2,7,1,3,6,9]
-Output: [4,7,2,9,6,3,1]
-```
+Given an integer `targetSum`
+
+return true if the tree has a root-to-leaf path such that adding up all the values along the path equals `targetSum`
+
+
+
+### Try 1
 
 ### Solutions
 
 ```python
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        
-        if not root or (not root.left and not root.right):
-            return root
-##########################################################调换左右节点
-        tmp = root.left
-        root.left = root.right
-        root.right = tmp
-#########################################################
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-        return root
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if root is None:
+            return False
+        if root.left is None and root.right is None and root.val == targetSum:
+            return True
+         
+        return (self.hasPathSum(root.left, targetSum - root.val) or self.hasPathSum(root.right, targetSum - root.val))
+```
+
+### Review
+
+How to judge the root status:
+
+if root is None / if not root
+
+When we need to transerve left and right nodes:
+
+return (self.hasPathSum(root.left, targetSum - root.val) or self.hasPathSum(root.right, targetSum - root.val))
+
+## (113) Path Sum II
+
+### Content
+
+Also, print the index that can be summed as targetSum:
+
+```
+Input: root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
+Output: [[5,4,11,2],[5,8,4,5]]
+```
+
+### Try1
+
+First tranverse the tree, 
+
+append node
+
+if in leaf node and targetSum is correct: 
+
+​	append(List)
+
+if None:
+
+​	List = [] # clean and reset the List
+
+### Solutions
+
+``` python
+def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+        rst = []
+####################### List[List[]]        
+        self._dfs(root, sum, rst, [])
+        return rst 
+
+    def _dfs(self, root, sum, rst, path):
+        if not root:
+            return 
+
+        # add current root's value to the path 
+        path.append(root.val)
+
+        # in case this is a leaf node 
+        if not root.left and not root.right:
+            if not sum - root.val:
+                # for primitive values, [:] is sufficient (although it is doing shallow copy)
+                rst.append(path[:])
+        else:
+            self._dfs(root.left, sum - root.val, rst, path)
+            self._dfs(root.right, sum - root.val, rst, path)
+
+        # backtrack 
+        path.pop()
 ```
 
