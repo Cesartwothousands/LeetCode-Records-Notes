@@ -54,6 +54,7 @@ You may assume that each input would have ***exactly\* one solution**, and you m
 
 ### Try1
 
+```
 Boudaries:
 
 lo < hi
@@ -67,20 +68,16 @@ hi > target // 2
 Sort the List first
 
 ​		for i in range(0,len)
-
 ​				lo = i
-
 ​				While lo < hi						
-
 ​				if  num[lo] + num[hi] == target
-
 ​						res = 						
-
 ​						return res
-
 ​				else
-
 ​						hi--	
+```
+
+
 
 ### Try2
 
@@ -595,7 +592,183 @@ class Solution:
         return root
 ```
 
-## ( )
+## (125) Valid Palindrome
+
+### Content
+
+Given a string `s`, return `true` *if it is a **palindrome**, or* `false` *otherwise*.
+
+**Example 1:**
+
+```python
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+```
+
+
+
+### Try1
+
+Use List to store string, use a pop(0),pop(-1)stack to make decesion
+
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = s.lower()
+        S = []
+
+        for ss in s:
+            if ss.isalnum():
+                S.append(ss) 
+
+        for i in range(len(S)//2):
+            if S[0] == S[-1]:
+                S.pop(0)
+                S.pop(-1)
+            else:
+                return False
+
+        if S != []:
+            S.pop()
+
+        if S == []:
+            return True
+```
+
+### Solutions
+
+#### Shortest and funny:
+
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+            newS= [i.lower() for i in s if i.isalnum()]
+            return newS == newS[::-1]
+```
+
+#### Two Pointer!
+
+```python
+class Solution:
+    def isPalindrome(self, s):
+        l, r = 0, len(s)-1
+        # First and Last
+        while l < r:
+        # Guarantee the order
+            while l < r and not s[l].isalnum():
+                l += 1
+            while l <r and not s[r].isalnum():
+                r -= 1
+            if s[l].lower() != s[r].lower():
+                return False
+            l +=1; r -= 1
+        return True
+```
+
+### Review
+
+.lower() function
+
+```
+s.isalnum所有字符都是数字或者字母，为真返回Ture，否则返回False。（重点，这是字母数字一起判断的！！）
+
+s.isalpha所有字符都是字母，为真返回Ture，否则返回False。（只判断字母）
+
+s.isdigit所有字符都是数字，为真返回Ture，否则返回False。（只判断数字）
+
+s.islower所有字符都是小写，为真返回Ture，否则返回False。
+
+s.isupper所有字符都是大写，为真返回Ture，否则返回False。
+
+s.istitle所有单词都是首字母大写，为真返回Ture，否则返回False。
+
+s.isspace所有字符都是空白字符，为真返回Ture，否则返回False。
+```
+
+while l < r and not s[l].isalnum():
+
+## (242) Valid Anagram
+
+### Content
+
+Given two strings `s` and `t`, return `true` *if* `t` *is an anagram of* `s`*, and* `false` *otherwise*.
+
+**Example 1:**
+
+```
+Input: s = "anagram", t = "nagaram"
+Output: true
+```
+
+### Try1
+
+First For: Hashmap 
+
+Use Hashmap to count
+
+Second For: if == : 
+
+Third For review
+
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        Hashmap = {}
+        if len(s) != len(t):
+            return False
+        
+        for i in range(len(s)):
+            if s[i] not in Hashmap:
+                Hashmap[s[i]] = 0
+            Hashmap[s[i]] += 1
+
+        for tt in t:
+            if tt in Hashmap:
+                Hashmap[tt] -= 1
+
+        for key in Hashmap:
+            if Hashmap[key] != 0:
+                return False
+
+        return True
+```
+
+### Solutions
+
+#### Traditional Dictionary
+
+```python
+def isAnagram1(self, s, t):
+    dic1, dic2 = {}, {}
+    for item in s:
+        dic1[item] = dic1.get(item, 0) + 1
+    for item in t:
+        dic2[item] = dic2.get(item, 0) + 1
+    return dic1 == dic2
+```
+
+#### Pre set 0 Dictionary
+
+```python
+def isAnagram2(self, s, t):
+    dic1, dic2 = [0]*26, [0]*26
+    for item in s:
+        dic1[ord(item)-ord('a')] += 1
+    for item in t:
+        dic2[ord(item)-ord('a')] += 1
+    return dic1 == dic2
+```
+
+#### Pre set 0 Dictionary
+
+Use Sorted()
+```python
+def isAnagram3(self, s, t):
+    return sorted(s) == sorted(t)
+```
+
+
 
 
 
