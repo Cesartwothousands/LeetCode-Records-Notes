@@ -20,7 +20,7 @@ brackets 括号
 
 traverse 遍历
 
-
+ascend 向上
 
 
 
@@ -768,7 +768,92 @@ def isAnagram3(self, s, t):
     return sorted(s) == sorted(t)
 ```
 
+## (704) Binary Search
 
+### Content
+
+Given an array of integers `nums` which is sorted in ascending order, and an integer `target`, write a function to search `target` in `nums`. If `target` exists, then return its index. Otherwise, return `-1`.
+
+**You must write an algorithm with `O(log n)` runtime complexity.**
+
+### Try1
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        if nums[len(nums)//2-1] >= target:
+            nums = nums[:len(nums)//2-1]
+        else:
+            nums = nums[len(nums)//2-1:]
+
+        if len(nums) == 1:
+            if nums[0] == target:
+                return nums[0]
+            else: 
+                return -1
+
+        self.search(nums, target)    
+```
+
+### Try2
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        while(len(nums) > 1):
+            if nums[len(nums)//2-1] >= target:
+                nums = nums[:len(nums)//2-1]
+            else:
+                nums = nums[len(nums)//2-1:]
+
+        if len(nums) == 1:
+            if nums[0] == target:
+                return nums[0]
+            else: 
+                return -1
+```
+
+### Solutions
+
+#### Two Pointers Loop
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left=0
+        right=len(nums)-1
+        while(left<= right):
+            mid=(left+right)//2
+            if nums[mid]==target:
+                return mid
+            elif nums[mid] < target:
+                left=mid+1
+            else:
+                right=mid-1
+        return -1
+```
+
+#### Recursive Solution
+
+```python
+class Solution(object):
+    def search(self, nums, target,count=0):
+        length=len(nums)
+        half_len=length//2
+        test=nums[half_len]
+        
+        if test == target:
+            return half_len+count
+        
+        if length == 1:
+            return -1
+        
+        if test > target:
+            return self.search(nums[0:half_len],target,count+0)
+        
+        else:
+            return self.search(nums[half_len:],target,count+half_len)
+```
 
 
 
