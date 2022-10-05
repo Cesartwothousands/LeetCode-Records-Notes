@@ -855,7 +855,93 @@ class Solution(object):
             return self.search(nums[half_len:],target,count+half_len)
 ```
 
+## (383) Ransom Note
 
+### Content
+
+Given two strings `ransomNote` and `magazine`, return `true` *if* `ransomNote` *can be constructed by using the letters from* `magazine` *and* `false` *otherwise*.
+
+**Example 3:**
+
+```
+Input: ransomNote = "aa", magazine = "aab"
+Output: true
+```
+
+### Try1
+
+Two Hashmap
+
+if ==, Hashmap[key] -= 1
+
+```Python
+class Solution:
+    def canConstruct(self, r: str, m: str) -> bool:
+        H_2 = {}
+
+        for mm in m:
+            H_2[mm] = H_2.get(mm, 0) + 1
+
+        for rr in r:            
+            if rr in H_2 and H_2[rr] > 0:
+                H_1[rr] -= 1
+                H_2[rr] -= 1
+            else :
+                return False
+        
+        return True
+```
+
+### Solutions
+
+#### Hashmap
+
+Try1
+
+#### Set
+
+Use set and .count function 
+
+```python
+class Solution:
+    def canConstruct(self, ransomNote, magazine):
+        for i in set(ransomNote):
+            if magazine.count(i) < ransomNote.count(i):
+                return False
+        return True
+```
+
+## (169) Majority Element
+
+### Content
+
+
+
+### Try 1 & 2
+
+```python
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        for i in set(nums):
+            if nums.count(i) > len(nums)//2:
+                return i
+            
+class Solution:
+    def majorityElement(self, nums) -> int:
+        H_2 = {}
+
+        for mm in nums:
+            H_2[mm] = H_2.get(mm, 0) + 1
+
+        for key in H_2:
+            if H_2[key] > len(nums)//2:
+```
+
+### Solutions
+
+LeetCode give 7 solutions:
+
+>https://leetcode.com/problems/majority-element/solutions/127412/majority-element/
 
 
 
