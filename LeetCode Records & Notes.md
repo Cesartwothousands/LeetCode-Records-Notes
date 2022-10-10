@@ -1583,5 +1583,55 @@ class Solution:
         return True
 ```
 
+## (1328) Break a Palindrome
 
+### Content
+
+Given a palindromic string of lowercase English letters `palindrome`
+
+replace **exactly one** character with any lowercase English letter so that the resulting string is **not** a palindrome and that it is the **lexicographically smallest** one possible.
+
+Return *the resulting string. If there is no way to replace a character to make it not a palindrome, return an **empty string**.*
+
+
+
+`"abcc"` is lexicographically smaller than `"abcd"` because the first position they differ is at the fourth character, and `'c'` is smaller than `'d'`.
+
+
+
+### Try1
+
+Must be a palindrome, so we can devide it as two parts
+
+for:
+
+​	if a, continue
+
+​	else replace as a
+
+### Try2
+
+```
+class Solution:
+    def breakPalindrome(self, p: str) -> str:
+        p = list(p)
+
+        if len(p)==1:
+            return ""
+        
+        for i in range(len(p)//2):
+            if not p[i] == 'a':
+                p[i] = 'a'
+                break
+            else:
+                if i == len(p)//2-1:
+                    p[-1] = 'b'
+
+        p =''.join(p) 
+        return p
+```
+
+if all the half of list is **a**, just **p[-1] = 'b'**
+
+### Solutions
 
