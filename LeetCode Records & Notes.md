@@ -1635,3 +1635,113 @@ if all the half of list is **a**, just **p[-1] = 'b'**
 
 ### Solutions
 
+
+
+## (88) Merge Sorted Array
+
+### Content
+
+You are given two integer arrays `nums1` and `nums2`, sorted in **non-decreasing order**, and two integers `m` and `n`, representing the number of elements in `nums1` and `nums2` respectively.
+
+**Merge** `nums1` and `nums2` into a single array sorted in **non-decreasing order**.
+
+### Try1
+
+Slice the list
+
+Merge Sort
+
+```
+```
+
+
+
+## (334) Increasing Triplet Subsequence
+
+### Content
+
+Given an integer array `nums`, return `true` *if there exists a triple of indices* `(i, j, k)` *such that* `i < j < k` *and* `nums[i] < nums[j] < nums[k]`. If no such indices exists, return `false`.
+
+### Try1(Failed)
+
+Have a [] List to set the triplet
+
+do L.append(nums[0])
+
+nums.pop(0)
+
+while(nums)
+
+​	if nums[0] <
+
+​	exchange 
+
+### Try2(Failed)
+
+Don't look it as a array
+
+Think about their differnece
+
+Let L[] = [n[i+1] - n[i]]
+
+We just want to see two increases
+
+means
+
+```python
+class Solution:
+    def increasingTriplet(self, n: List[int]) -> bool:
+        D = []
+        l = len(n)
+        for i in range(l-1):
+            D.append(n[i+1]-n[i])
+        
+        for i in range(0, l-2):
+            for j in range(1 , l-1):
+                if D[i]>0 and D[j]>0 and i != j:
+                    print(D,D[i], D[j])
+                    if n[i] < n[j] or n[i+1] < n[j+1]:
+                        
+                        return True
+        
+        return False
+```
+
+### Solutions
+
+```python
+class Solution:
+def increasingTriplet(nums):
+    first = second = float('inf')
+    for n in nums:
+        if n <= first:
+            first = n
+        elif n <= second:
+            second = n
+        else:
+            return True
+    return False
+```
+
+$O(n)$
+
+```Python
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        min1 = min2 = float("inf")
+        for i, n in enumerate(nums):
+            if min1 < min2 < n:
+                return True
+            elif n < min1:
+                min1 = n
+            elif min1 < n < min2:
+                min2 = n
+        return False
+```
+
+$O(n^2)$
+
+### Review: Array & Greedy & O(n)
+
+## (976) Largest Perimeter Triangle
+
