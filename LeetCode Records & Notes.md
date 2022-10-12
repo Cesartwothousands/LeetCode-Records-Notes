@@ -1745,3 +1745,54 @@ $O(n^2)$
 
 ## (976) Largest Perimeter Triangle
 
+### Content
+
+
+
+### Try1(Success)
+
+```python
+class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        #a+b>c,a>c-b
+        sum = 0
+        S = 0
+        tmp = 0
+        nums = sorted(nums)
+        l1 = nums[0]
+        l2 = nums[1]
+
+        for i in range(2, len(nums)):
+            print(l1, l2, nums[i])
+            if l1 + l2 > nums[i] and l1 > abs(l2 - nums[i]):
+                sum = l1 + l2 + nums[i]
+                if S < sum:
+                    S = sum
+            if l1 > l2:
+                tmp = l2
+                l2 = l1
+                l1 = tmp
+            if nums[i] > l1:
+                l1 = nums[i]
+
+        return S
+```
+
+### Solutions
+
+#### Sort
+
+Just consider the last of them
+
+```python
+class Solution(object):
+    def largestPerimeter(self, A):
+        A.sort()
+        for i in xrange(len(A) - 3, -1, -1):
+            if A[i] + A[i+1] > A[i+2]:
+                return A[i] + A[i+1] + A[i+2]
+        return 0
+```
+
+### Review: Sort & Math
+
