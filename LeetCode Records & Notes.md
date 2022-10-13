@@ -943,6 +943,92 @@ LeetCode give 7 solutions:
 
 >https://leetcode.com/problems/majority-element/solutions/127412/majority-element/
 
+## (Climbing Stairs)
+
+### Content
+
+You are climbing a staircase. It takes `n` steps to reach the top.
+
+Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?
+
+```python
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+```
+
+### Try1(Success)
+
+Two steps are more important than one step
+
+Just count two steps
+
+if i in range(n//2):
+
+​	i is the number of 2 steps
+
+​	how to calculate the numbers of each possible situation
+
+​	$C^i_(n-i)$
+
+​	to escape the n^2 section, calculate $C^i_(n-i)$ first, calculate once a time
+
+write two list to use their value of factorial 
+
+```python
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        p = n // 2 
+        Sum, ssm = 0, 0
+        
+        up,ilist = [1],[1]
+        for i in range(1, n+1):
+            up.append(i*up[i-1])   
+            ilist.append(i*up[i-1]) 
+        up.reverse()
+
+        for i in range(p+1):
+            ssm = up[i] / ilist[i] / up[2 * i]
+            print(up, ilist,up[i] ,ilist[i] ,up[2 * i])
+            Sum += ssm
+        
+        return int(Sum)
+```
+
+### Solutions
+
+#### See it as a Fibonacci
+
+```
+# Top down - TLE
+def climbStairs1(self, n):
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
+    return self.climbStairs(n-1)+self.climbStairs(n-2)
+```
+
+```python
+class Solution:
+
+# Bottom up, O(n) space
+    def climbStairs(self, n):
+        if n == 1:
+            return 1
+        res = [0 for i in range(n)]
+        res[0], res[1] = 1, 2
+        for i in range(2, n):
+            res[i] = res[i-1] + res[i-2]
+        return res[-1]
+```
+
+### Review: Math & Fibonacci & Recursive/Iteration
+
+
+
 
 
 # LeetCode Everyday
