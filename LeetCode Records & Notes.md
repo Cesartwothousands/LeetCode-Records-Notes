@@ -22,7 +22,7 @@ traverse 遍历
 
 ascend 向上
 
-
+prefix 字首
 
 
 
@@ -1027,7 +1027,216 @@ class Solution:
 
 ### Review: Math & Fibonacci & Recursive/Iteration
 
+## (217) Contains Duplicate
 
+### Content
+
+**Example 1:**
+
+```
+Input: nums = [1,2,3,1]
+Output: true
+```
+
+**Example 2:**
+
+```
+Input: nums = [1,2,3,4]
+Output: false
+```
+
+### Try1(Success)
+
+#### Sort
+
+```python
+class Solution(object):
+    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+
+        nums.sort()
+        for i in range(len(nums)):
+            if i>0:
+                if nums[i] == nums[i-1]:
+                    return True
+
+        return False 
+```
+
+### Solutions
+
+#### Set
+
+```python
+class Solution(object):
+    def containsDuplicate(self, nums):
+        seen = set()
+        for n in nums:
+            if n in seen:
+                return True
+            seen.add(n)
+        return False
+```
+
+#### Hash table
+
+### Review: Array & Sort & Hash Table
+
+set.add(n)
+numsSet =  set(nums)
+
+## (13) Roman to Integer
+
+### Content
+
+Trans Roman to Integer
+
+```
+Input: s = "MCMXCIV"
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+
+### Try1(Failed)
+
+Use a L1 = [] to sotre the Roman appears
+
+for i in range:
+
+​	if i in L1:
+
+​		if i -1 == i:
+
+​			use count to do action next loop
+
+​		else:
+
+​			L1.pop()
+
+​	else:
+
+​		L1.append()	 
+
+Failed
+
+### Try2(Success)
+
+Bruce
+
+```python
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        L = []
+        S = 0
+        count = 0
+
+        def cal(self, n):
+            if n == 'I':
+                return 1
+            elif n == 'V':
+                return 5
+            elif n == 'X':
+                return 10
+            elif n == 'L':
+                return 50
+            elif n == 'C':            
+                return 100
+            elif n == 'D':            
+                return 500
+            elif n == 'M':            
+                return 1000
+
+        for i in range(1,len(s)):
+            if cal(self, n = s[i-1])>= cal(self, n = s[i]):
+                S+= cal(self, n = s[i-1] )
+            else:
+                S-= cal(self, n = s[i-1]) 
+        S += cal(self, n = s[-1])
+
+        return S
+```
+
+better than 5.1%
+
+### Solutions
+
+#### Dictionary to replace
+
+```java
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        translations = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000
+        }
+        number = 0
+        s = s.replace("IV", "IIII").replace("IX", "VIIII")
+        s = s.replace("XL", "XXXX").replace("XC", "LXXXX")
+        s = s.replace("CD", "CCCC").replace("CM", "DCCCC")
+        for char in s:
+            number += translations[char]
+        return number
+```
+
+### Review: String & Hash Table 
+
+## (14) Longest Common Prefix
+
+### Content
+
+```
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+```
+
+### Try1(Failed)
+
+Use a list to collect all letters(in special orders) in first word
+
+Use a count to count how long the common prefix is
+
+```python
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        count = len(strs[0])
+        Map = []
+        res = ""
+
+        for i in range(len(strs[0])):
+            Map.append(strs[0][i])
+        
+        for i in range(1,len(strs)):
+            c = 0
+            for ii in range(len(strs[i])):
+                if strs[i][ii] == Map[ii]:
+                    c += 1
+                else:
+                    if c < count:
+                        count = c
+                    break
+
+        if count == 0 or strs == [""]:
+            return ""
+        else:    
+            if len(strs) < 2:
+                return strs[0]
+            else:
+                return strs[0][0:count]
+```
+
+### Solutions
 
 
 
