@@ -24,7 +24,7 @@ ascend 向上
 
 prefix 字首
 
-
+consecutive 连续
 
 
 
@@ -2090,4 +2090,70 @@ class Solution(object):
 ```
 
 ### Review: Sort & Math
+
+## (443) String Compression
+
+### Content
+
+**Example 1:**
+
+```
+Input: chars = ["a","a","b","b","c","c","c"]
+Output: Return 6, and the first 6 characters of the input array should be: ["a","2","b","2","c","3"]
+Explanation: The groups are "aa", "bb", and "ccc". This compresses to "a2b2c3".
+```
+
+**Example 2:**
+
+```
+Input: chars = ["a"]
+Output: Return 1, and the first character of the input array should be: ["a"]
+Explanation: The only group is "a", which remains uncompressed since it's a single character.
+```
+
+### Try1(Failed)
+
+for 1:n
+
+​	if n[i] == n[i-1]:
+
+​	count += 1
+
+​	else:
+
+​	string.append()
+
+### Solutions
+
+#### Two Pointers
+
+```python
+class Solution:
+    def compress(self, chars):
+        walker, runner = 0, 0
+        while runner < len(chars):
+		
+            chars[walker] = chars[runner]
+            count = 1
+			
+            while runner + 1 < len(chars) and chars[runner] == chars[runner+1]:
+                runner += 1
+                count += 1
+			
+            if count > 1:
+                for c in str(count):
+                    chars[walker+1] = c
+                    walker += 1
+            
+            runner += 1
+            walker += 1
+        
+        return walker
+```
+
+### Review: Two Pointers & String
+
+## (1531) String Compression II
+
+### Content
 
