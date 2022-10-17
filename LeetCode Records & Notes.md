@@ -1236,7 +1236,40 @@ class Solution(object):
                 return strs[0][0:count]
 ```
 
+### Try2(Success)
+
+```python
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        l = 200
+        exm = ""
+        string = ""
+
+        for strss in strs:
+            if len(strss) < l:
+                l = len(strss)
+                exm = strss
+                if l == 0:
+                    return ""
+
+        for i in range(len(strs)):
+            j = 0
+            while j < len(exm):
+                if strs[i][j] != exm[j]:
+                    exm = exm[0:j]
+                    break
+                j += 1
+        
+        for e in exm:
+            string += str(e)
+        return string
+```
+
 ### Solutions
+
+https://leetcode.com/problems/longest-common-prefix/solutions/127449/longest-common-prefix/
+
+
 
 ## (252) Meeting Room
 
