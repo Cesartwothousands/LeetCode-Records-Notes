@@ -1238,6 +1238,66 @@ class Solution(object):
 
 ### Solutions
 
+## (252) Meeting Room
+
+### Content
+
+Given an array of meeting time intervals consisting of start and end times`[[s1,e1],[s2,e2],...]`(si< ei), determine if a person could attend all meetings.
+
+### Try1()
+
+use si to sort them first
+
+use a theory to decide whether is right
+
+if si > ei-1 :
+
+elif ei < si-1 :
+
+else: 
+
+return false
+
+### Solutions
+
+**Time complexity** : O(nlogn). The time complexity is dominated by sorting. Once the array has been sorted, only O(n) time is taken to go through the array and determine if there is any overlap.
+
+**Space complexity** : O(1). Since no additional space is allocated.
+
+```python
+def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
+        new_intervals = sorted(intervals, key=lambda x: x[0])
+        for i in range(1,len(new_intervals)):
+            if new_intervals[i-1][1] > new_intervals[i][0]:return False
+        return True
+```
+
+```c++
+class Solution {
+    public boolean canAttendMeetings(Interval[] intervals) {
+        Arrays.sort(intervals, new Comparator<Interval>() {
+           public int compare(Interval i1, Interval i2) {
+               return i1.start - i2.start;
+           } 
+        });
+        Interval last = null;
+        for (Interval i: intervals) {
+            if (last != null && i.start < last.end) {
+                return false;
+            }
+            last = i;
+        }
+        return true;
+    }
+}
+```
+
+### Review: Sort & Array
+
+
+
+
+
 
 
 # LeetCode Everyday
