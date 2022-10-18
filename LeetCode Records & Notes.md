@@ -2450,3 +2450,91 @@ class Solution:
 Beats 90%
 
 ### Review: DP^4
+
+## Count and Say
+
+### Content
+
+```
+Input: n = 4
+Output: "1211"
+Explanation:
+countAndSay(1) = "1"
+countAndSay(2) = say "1" = one 1 = "11"
+countAndSay(3) = say "11" = two 1's = "21"
+countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
+```
+
+### Try1(Success)
+
+Use recursive
+
+how to encode it
+
+
+
+split the substring first
+
+two parameters: len() and values
+
+```Python
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        string = "1"
+
+        if n != 1:
+            
+            while n-1 :
+                
+                walk,run = 1,0
+                Count,Number = [],[string[0]]
+                l = len(string) 
+                while l-1:
+
+                    run += 1
+                    if string[run] == string[run-1]:
+                        walk += 1
+                    else:
+                        Count.append(walk)
+                        walk = 1
+                        Number.append(string[run])
+                    l-=1
+                Count.append(walk)
+                if n ==2:
+                    print(Count,Number)                
+                
+                string = ""
+                for i in range(len(Count)):
+                    string += str(Count[i])
+                    string += str(Number[i])
+
+                n-=1
+
+        return string
+```
+
+### Solutions
+
+The same as I think
+
+```python
+     def countAndSay(self, n):
+        s = '1'
+        for _ in range(n-1):
+            let, temp, count = s[0], '', 0
+            for l in s:
+                if let == l:
+                    count += 1
+                else:
+                    temp += str(count)+let
+                    let = l
+                    count = 1
+            temp += str(count)+let
+            s = temp
+        return s
+```
+
+### Review: String
+
+
+
