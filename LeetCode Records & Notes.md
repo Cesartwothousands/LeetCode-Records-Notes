@@ -1386,6 +1386,81 @@ Swap in python:
 
 nums[i], nums[zero] = nums[zero], nums[i]
 
+## (9) Palindrome Number
+
+### Content
+
+**Example 1:**
+
+```
+Input: x = 121
+Output: true
+Explanation: 121 reads as 121 from left to right and from right to left.
+```
+
+**Example 2:**
+
+```
+Input: x = -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+```
+
+### Try1(Success)
+
+<0 false
+
+<10 true
+
+Two pointers,i and -i
+
+```python
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
+        elif x<10:
+            return True
+        else:
+            X = []
+            while x :
+                X.append( x % 10)
+                x = x//10
+                
+            for i in range(len(X)//2):
+                if X[i] != X[-i-1]:
+                    return False
+
+            return True
+```
+
+### Solutions
+
+> Second idea would be reverting the number itself, and then compare the number with original number, if they are the same, then the number is a palindrome. However, if the reversed number is larger than int.MAX\text{int.MAX}int.MAX, we will hit integer overflow problem.
+>
+> Following the thoughts based on the second idea, to avoid the overflow issue of the reverted number, what if we only revert half of the int\text{int}int number? After all, the reverse of the last half of the palindrome should be the same as the first half of the number, if the number is a palindrome.
+
+
+
+```
+if(x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+```
+
+```C++
+int revertedNumber = 0;
+        while(x > revertedNumber) {
+            revertedNumber = revertedNumber * 10 + x % 10;
+            x /= 10;
+        }
+
+        return x == revertedNumber || x == revertedNumber/10;
+```
+
+Just revert half of x
+
+### Review: Math & Array & String
+
 
 
 
