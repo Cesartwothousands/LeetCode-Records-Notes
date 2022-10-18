@@ -1327,7 +1327,64 @@ class Solution {
 
 ### Review: Sort & Array
 
+## (253) Move Zeroes
 
+### Content
+
+Given an integer array `nums`, move all `0`'s to the end of it while maintaining the relative order of the non-zero elements.
+
+**Note** that you must do this in-place without making a copy of the array.
+
+### Try1(Success)
+
+while l
+
+​	append in the end
+
+​	pop()
+
+​	i--
+
+i++
+
+l--
+
+```Python
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        l = len(nums)
+        i = 0
+        count = 0
+        while(l):
+            if nums[i] == 0:
+                nums.append(0)
+                nums.pop(i)
+                i -= 1
+            i += 1
+            l -= 1
+```
+
+### Solutions
+
+#### Two Pointers
+
+```Python
+def moveZeroes(self, nums):
+    zero = 0  # records the position of "0"
+    for i in range(len(nums)):
+        if nums[i] != 0:
+            nums[i], nums[zero] = nums[zero], nums[i]
+            zero += 1
+```
+
+### Review: Array & Two Pointers
+
+Swap in python:
+
+nums[i], nums[zero] = nums[zero], nums[i]
 
 
 
