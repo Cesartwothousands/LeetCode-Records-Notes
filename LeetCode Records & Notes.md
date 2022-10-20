@@ -24,6 +24,8 @@ ascend 向上
 
 prefix 字首
 
+suffix 字尾
+
 consecutive 连续
 
 concatenate 使连接，把...连成一串
@@ -1461,6 +1463,145 @@ Just revert half of x
 
 ### Review: Math & Array & String
 
+## (844) Backspace String Compare
+
+### Content
+
+Given two strings `s` and `t`, return `true` *if they are equal when both are typed into empty text editors*. `'#'` means a backspace character.
+
+Note that after backspacing an empty text, the text will continue empty.
+
+### Try1(Success)
+
+easy stack problem
+
+```python
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        ss = []
+        tt = []
+
+        for sss in s:
+            if sss != "#":
+                ss.append(sss)
+            elif ss:
+                ss.pop()
+        for ttt in t:
+            if ttt != "#":
+                tt.append(ttt)
+            elif tt:
+                tt.pop()
+        S = "".join(ss)
+        T = "".join(tt)
+
+        return S==T
+```
+
+Use elif ss: to prevent the [] situation
+
+### Solutions
+
+Another one: Two pointers
+
+Iterate through the string in reverse. If we see a backspace character, the next non-backspace character is skipped. If a character isn't skipped, it is part of the final answer.
+
+See the comments in the code for more details.
+
+### Review: Stack & String & all()
+
+#### all() function
+
+The **Python all() function** returns true if all the elements of a given iterable (List, Dictionary, Tuple, set, etc.) are True otherwise it returns False. It also returns True if the iterable object is empty. Sometimes while working on some code if we want to ensure that user has not entered a False value then we use the all() function.
+
+```
+**Syntax:** all( iterable )
+- **Iterable:** It is an iterable object such as a dictionary,tuple,list,set,etc.
+**Returns:** boolean
+```
+
+## (977) Square of a Sorted Array
+
+### Content
+
+Given an integer array `nums` sorted in **non-decreasing** order, return *an array of **the squares of each number** sorted in non-decreasing order*.
+
+
+
+> **Follow up:** Squaring each element and sorting the new array is very trivial, could you find an `O(n)` solution using a different approach?
+
+### Try1(Success)
+
+Two pointers
+
+from end and start
+
+campare each other
+
+```python
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        l = len(nums)
+        end = l - 1
+        start = 0
+        res = []
+
+        while start <= end:
+            if nums[end] * nums[end] >= nums[start] * nums[start]:
+                res.append(nums[end] * nums[end])
+                end -= 1    
+            else:
+                res.append(nums[start] * nums[start])
+                start += 1
+
+        res.reverse()
+
+        return res
+    
+        ##or return res[::-1]
+```
+
+### Solutions
+
+### Review: Two Pointers 
+
+## (238) Product of Array Except Self
+
+### Content
+
+Given an integer array `nums`, return *an array* `answer` *such that* `answer[i]` *is equal to the product of all the elements of* `nums` *except* `nums[i]`.
+
+The product of any prefix or suffix of `nums` is **guaranteed** to fit in a **32-bit** integer.
+
+You must write an algorithm that runs in `O(n)` time and without using the division operation.
+
+### Try1(Failed)
+
+### Solutions
+
+```python
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = []
+        
+        acc = 1
+        for n in nums:
+            res.append(acc)
+            acc *= n
+
+        acc = 1
+        for i in reversed(range(len(nums))):
+            res[i] *= acc
+            acc *= nums[i]
+            
+        return res
+```
+
+### Review: Prefix Sum
+
+
+
+
+
 
 
 
@@ -2623,7 +2764,7 @@ Output: ["the","is","sunny","day"]
 Explanation: "the", "is", "sunny" and "day" are the four most frequent words, with the number of occurrence being 4, 3, 2 and 1 respectively.
 ```
 
-### Try1
+### Try1(Failed)
 
 Use hashmap to store
 
@@ -2632,3 +2773,349 @@ use value to count
 for value:
 
 ​	if max
+
+### Solutions
+
+#### Heap
+
+```python
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        dic = {}
+        for i in words:
+            if i not in dic:
+                dic[i] = 1
+            else:
+                dic[i] += 1
+        max_heap = []
+        max_count = 0
+        for i in dic:
+            if dic[i] > max_count:
+                max_count = dic[i]
+        res = []
+        for i in dic:
+            res.append((i,dic[i]))
+        res.sort(key = lambda x: x[1])
+        for value,count in res:
+            heapq.heappush(max_heap,((-1*count),value))
+        ans = []
+        for i in range(k):
+            count,word = heapq.heappop(max_heap)
+            ans.append(word)
+        return ans   
+```
+
+#### Hashtable
+
+```Python
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        dict = {}
+        for x in words:
+            if x in dict:
+                dict[x] += 1
+            else:
+                dict[x] = 1
+        res = sorted(dict, key=lambda x: (-dict[x], x))
+        return res[:k]
+```
+
+### Review: Heap & Heapq & Lambda
+
+#### Heapq
+
+Use heap to create heap:
+
+```python
+# coding=utf-8
+import heapq
+
+
+array = [10, 17, 50, 7, 30, 24, 27, 45, 15, 5, 36, 21]
+heap = []
+for num in array:
+    heapq.heappush(heap, num)
+print("array:", array)
+print("heap: ", heap)
+
+heapq.heapify(array)
+print("array:", array)
+-->
+array: [10, 17, 50, 7, 30, 24, 27, 45, 15, 5, 36, 21]
+heap:  [5, 7, 21, 15, 10, 24, 27, 45, 17, 30, 36, 50]
+array: [5, 7, 21, 10, 17, 24, 27, 45, 15, 30, 36, 50]
+```
+
+heappush(heap, num)，先创建一个空堆，然后将数据一个一个地添加到堆中。每添加一个数据后，heap都满足小顶堆的特性。
+
+heapify(array)，直接将数据列表调整成一个小顶堆(调整的原理参考上面堆排序的文章，heapq库已经实现了)。
+
+两种方法实现的结果会有差异，如上面的代码中，使用heappush(heap, num)得到的堆结构如下。
+
+
+
+Max and min
+
+```python
+array = [10, 17, 50, 7, 30, 24, 27, 45, 15, 5, 36, 21]
+heapq.heapify(array)
+print(heapq.nlargest(2, array))
+print(heapq.nsmallest(3, array))
+-->
+[50, 45]
+[5, 7, 10]
+```
+
+
+
+Merge sorted list
+
+```py
+array_a = [10, 7, 15, 8]
+array_b = [17, 3, 8, 20, 13]
+array_merge = heapq.merge(sorted(array_a), sorted(array_b))
+print("merge result:", list(array_merge))
+-->
+merge result: [3, 7, 8, 8, 10, 13, 15, 17, 20]
+```
+
+
+
+replace data: pop and push
+
+```python
+array_c = [10, 7, 15, 8]
+heapq.heapify(array_c)
+print("before:", array_c)
+# 先push再pop
+item = heapq.heappushpop(array_c, 5)
+print("after: ", array_c)
+print(item)
+
+array_d = [10, 7, 15, 8]
+heapq.heapify(array_d)
+print("before:", array_d)
+# 先pop再push
+item = heapq.heapreplace(array_d, 5)
+print("after: ", array_d)
+print(item)
+-->
+before: [7, 8, 15, 10]
+after:  [7, 8, 15, 10]
+5
+before: [7, 8, 15, 10]
+after:  [5, 8, 15, 10]
+7
+```
+
+heappushpop(heap, num)，先将num添加到堆中，然后将堆顶的数据出堆。
+
+heapreplace(heap, num)，先将堆顶的数据出堆，然后将num添加到堆中。
+
+
+
+#### Lambda
+
+**filter函数** 此时lambda函数用于指定过滤列表元素的条件。例如filter(lambda x: x % 3 == 0, [1, 2, 3])指定将列表[1,2,3]中能够被3整除的元素过滤出来，其结果是[3]。
+
+**sorted函数** 此时lambda函数用于指定对列表中所有元素进行排序的准则。例如sorted([1, 2, 3, 4, 5, 6, 7, 8, 9], key=lambda x: abs(5-x))将列表[1, 2, 3, 4, 5, 6, 7, 8, 9]按照元素与5距离从小到大进行排序，其结果是[5, 4, 6, 3, 7, 2, 8, 1, 9]。
+
+**map函数** 此时lambda函数用于指定对列表中每一个元素的共同操作。例如map(lambda x: x+1, [1, 2,3])将列表[1, 2, 3]中的元素分别加1，其结果[2, 3, 4]。
+
+**reduce函数** 此时lambda函数用于指定列表中两两相邻元素的结合条件。例如reduce(lambda a, b: '{}, {}'.format(a, b), [1, 2, 3, 4, 5, 6, 7, 8, 9])将列表 [1, 2, 3, 4, 5, 6, 7, 8, 9]中的元素从左往右两两以逗号分隔的字符的形式依次结合起来，其结果是'1, 2, 3, 4, 5, 6, 7, 8, 9'。
+
+## (12) Integer to Roman
+
+### Content
+
+**Example 1:**
+
+```
+Input: num = 3
+Output: "III"
+Explanation: 3 is represented as 3 ones.
+```
+
+**Example 2:**
+
+```
+Input: num = 58
+Output: "LVIII"
+Explanation: L = 50, V = 5, III = 3.
+```
+
+**Example 3:**
+
+```
+Input: num = 1994
+Output: "MCMXCIV"
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+
+### Try1
+
+That's code of Roman to Integer:
+
+```python
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        L = []
+        S = 0
+        count = 0
+
+        def cal(self, n):
+            if n == 'I':
+                return 1
+            elif n == 'V':
+                return 5
+            elif n == 'X':
+                return 10
+            elif n == 'L':
+                return 50
+            elif n == 'C':            
+                return 100
+            elif n == 'D':            
+                return 500
+            elif n == 'M':            
+                return 1000
+
+        for i in range(1,len(s)):
+            if cal(self, n = s[i-1])>= cal(self, n = s[i]):
+                S+= cal(self, n = s[i-1] )
+            else:
+                S-= cal(self, n = s[i-1]) 
+        S += cal(self, n = s[-1])
+
+        return S
+```
+
+That's Try1
+
+```python
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        res = ""
+
+        while num:
+            if num // 1000 > 0:
+                res += "M"
+                num = num -  1000
+            
+            elif num // 900 > 0:
+                res += "CM"
+                num = num -  900
+
+            elif num // 500 > 0:
+                res += "D"
+                num = num -  500
+
+            elif num // 400 > 0:
+                res += "CD"
+                num = num -  400 
+
+            elif num // 100 > 0:
+                res += "C"
+                num = num - 100
+
+            elif num // 90 > 0:
+                res += "XC"
+                num = num -  90 
+
+            elif num // 50 > 0:
+                res += "L"
+                num = num -  50
+
+            elif num // 40 > 0:
+                res += "XL"
+                num = num -  40 
+            
+            elif num // 10 > 0:
+                res += "X"
+                num = num -  10 
+
+            elif num // 9 > 0:
+                res += "IX"
+                num = num -  9
+
+            elif num // 5 > 0:
+                res += "V"
+                num = num -  5
+
+            elif num // 4 > 0:
+                res += "IV"
+                num = num -  4
+
+            else:
+                res += "I"
+                num = num - 1   
+
+        return res
+```
+
+### Solutions
+
+```python
+class Solution:
+    def intToRoman(self, N: int) -> str:
+        val = [1000,900,500,400,100,90,50,40,10,9,5,4,1]
+        rom = ["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"]
+        ans = ""
+        for i in range(13):
+            while N >= val[i]:
+                ans += rom[i]
+                N -= val[i]
+        return ans
+```
+
+### Review: String & Hashtable
+
+## (1832) Check if the Sentence is Pangram
+
+### Content
+
+A **pangram** is a sentence where every letter of the English alphabet appears at least once.
+
+Given a string `sentence` containing only lowercase English letters, return `true` *if* `sentence` *is a **pangram**, or* `false` *otherwise.*
+
+### Try1(Success)
+
+Use hashtable to store, len(H) == 26
+
+```python
+class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        H ={}
+
+        for s in sentence:
+            if not s in H:
+                H[s] = 1
+
+        return len(H) == 26 
+```
+
+So fucking easy
+
+### Solutions
+
+#### Traverse 26 times
+
+O(26*n)
+
+#### Set
+
+```python
+class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        # Add every letter of 'sentence' to hash set 'seen'.
+        seen = set(sentence)
+        
+        # If the size of 'seen' is 26, then 'sentence' is a pangram.
+        return len(seen) == 26
+```
+
+### Review: Hashtable & Set
+
+
+
+
+
