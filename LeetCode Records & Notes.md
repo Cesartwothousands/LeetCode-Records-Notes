@@ -945,7 +945,7 @@ LeetCode give 7 solutions:
 
 >https://leetcode.com/problems/majority-element/solutions/127412/majority-element/
 
-## (Climbing Stairs)
+## (70) Climbing Stairs
 
 ### Content
 
@@ -1089,6 +1089,63 @@ class Solution(object):
 
 set.add(n)
 numsSet =  set(nums)
+
+## (219) Contains Duplicate II
+
+### Content
+
+Given an integer array `nums` and an integer `k`, return `true` if there are two **distinct indices** `i` and `j` in the array such that `nums[i] == nums[j]` and `abs(i - j) <= k`.
+
+### Try1(Success)
+
+Use a Hash table to store the location of first number
+
+every time meet another same number, compare the abs(i - j)
+
+```python
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        H = {}
+        for i in range(len(nums)):
+            if not nums[i] in H:
+                H[nums[i]] = i 
+            else:
+                if abs(i - H[nums[i]]) <= k:
+                    return True
+                H[nums[i]] = i
+
+        return False
+```
+
+### Solutions
+
+### Review: Hash Table
+
+## (220) Contains Duplicate III
+
+### Content
+
+You are given an integer array `nums` and two integers `indexDiff` and `valueDiff`.
+
+Find a pair of indices `(i, j)` such that:
+
+- `i != j`,
+- `abs(i - j) <= indexDiff`.
+- `abs(nums[i] - nums[j]) <= valueDiff`, and
+
+Return `true` *if such pair exists or* `false` *otherwise*.
+
+### Try1(Failed)
+
+### Solutions
+
+
+
+### Review: 
+
+
+
+
 
 ## (13) Roman to Integer
 
