@@ -1655,6 +1655,85 @@ class Solution:
 
 ### Review: Prefix Sum
 
+## (3) Longest Substring Without Repeating Characters
+
+### Content
+
+Given a string `s`, find the length of the **longest substring** without repeating characters.
+
+> substring:**A substring is a contiguous non-empty sequence of characters within a string.**
+
+### Try1(Success)
+
+Use a Hashtable to see if any words to repeat
+
+Use a varaiable to store the begin of our substring, we call it mark
+
+```python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = 0
+        mark = 0
+        H = {}
+        
+        for i in range(len(s)):
+            if not s[i] in H:
+                H[s[i]] = i
+            else:
+                if mark < H[s[i]] + 1:
+                    mark = H[s[i]] + 1
+                H[s[i]] = i
+
+            if i - mark + 1 > l:
+                l = i - mark + 1
+        
+        return l
+```
+
+### Solutions
+
+#### Brute
+
+```python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        def check(start, end):
+            chars = set()
+            for i in range(start, end + 1):
+                c = s[i]
+                if c in chars:
+                    return False
+                chars.add(c)
+            return True
+
+        n = len(s)
+
+        res = 0
+        for i in range(n):
+            for j in range(i, n):
+                if check(i, j):
+                    res = max(res, j - i + 1)
+        return res
+```
+
+### Review: Hashtable & Sliding Window
+
+Tips
+
+All previous implementations have no assumption on the charset of the string `s`.
+
+If we know that the charset is rather small, we can mimic what a HashSet/HashMap does with a boolean/integer array as direct access table. Though the time complexity of query or insertion is still O(1)O(1)*O*(1), the constant factor is smaller in an array than in a HashMap/HashSet. Thus, we can achieve a shorter runtime by the replacement here.
+
+Commonly used tables are:
+
+- `int[26]` for Letters 'a' - 'z' or 'A' - 'Z'
+- `int[128]` for ASCII
+- `int[256]` for Extended ASCII
+
+
+
+
+
 
 
 
@@ -3171,6 +3250,22 @@ class Solution:
 ```
 
 ### Review: Hashtable & Set
+
+## (4) Median of Two Sorted Arrays
+
+### Content
+
+Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, return **the median** of the two sorted arrays.
+
+> **The overall run time complexity should be `O(log (m+n))`.**
+
+### Try1
+
+
+
+### Solutions
+
+### Review:
 
 
 
