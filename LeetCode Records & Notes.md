@@ -3251,6 +3251,198 @@ class Solution:
 
 ### Review: Hashtable & Set
 
+## (75) Sorted Colors
+
+### Content
+
+Basic Sorted problem, first time C++ solution
+
+### Try1(Falied)
+
+### Solutions
+
+#### Sort function
+
+```cpp
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+       sort(nums.begin(), nums.end());
+    }
+};
+```
+
+#### Keep a count of 0's 1's and 2's**
+Time complexity - O(2N)
+
+```cpp
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int count0 = 0;
+        int count1 = 0; 
+        int count2  = 0;
+        for(int i =0; i< nums.size(); i++){
+            if(nums[i] == 0){
+                count0++;
+            }else if (nums[i] == 1){
+                count1++;
+            }else if (nums[i] ==2 ){
+                count2++;
+            }
+            
+         }
+        for(int i =0; i< count0; i++){
+            nums[i] =0;
+        }
+        for(int i =count0; i< (count1 + count0); i++){
+            nums[i] =1;
+        }
+        for(int i =(count1 + count0); i< nums.size(); i++){
+            nums[i] =2;
+        }
+        
+    }
+};
+```
+
+#### **Using 3 pointers**
+Time complexity - O(N)
+
+```cpp
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int low =0; 
+        int high = nums.size()-1;
+        int mid =0;
+        
+        while(mid <= high){
+            if(nums[mid] == 0){
+                swap(nums[mid], nums[low]);
+                low++;
+                mid++;
+            }
+            else if(nums[mid] == 1){
+                mid++;
+            }
+            else {
+                swap(nums[mid], nums[high]);
+                high--;
+            }
+        }
+    }
+```
+
+### Review: Tradtional Sorting
+
+swap(nums[i], nums[j])
+
+## (128) Longest Consecutive Sequence
+
+### Content
+
+Given an unsorted array of integers `nums`, return *the length of the longest consecutive elements sequence.*
+
+You must write an algorithm that runs in `O(n)` time.
+
+### Try1(Failed)
+
+### Solutions
+
+#### Brute
+
+```python
+class Solution:
+    def longestConsecutive(self, nums):
+        longest_streak = 0
+
+        for num in nums:
+            current_num = num
+            current_streak = 1
+
+            while current_num + 1 in nums:
+                current_num += 1
+                current_streak += 1
+
+            longest_streak = max(longest_streak, current_streak)
+
+        return longest_streak
+```
+
+- Time complexity : O(n3)O(n^3)*O*(*n*3).
+
+  The outer loop runs exactly nn*n* times, and because `currentNum` increments by 1 during each iteration of the `while` loop, it runs in O(n)O(n)*O*(*n*) time. Then, on each iteration of the `while` loop, an O(n)O(n)*O*(*n*) lookup in the array is performed. Therefore, this brute force algorithm is really three nested O(n)O(n)*O*(*n*) loops, which compound multiplicatively to a cubic runtime.
+
+#### Sorting
+
+
+
+#### Set
+
+- Insert all the elements of the array into set.
+- **Check if the previous number (nums[i] - 1) is present in the set**, if it is then that number (nums[i]) is not the starting of the sequence.
+- If previous number is not present, that means that number is the starting of the sequence.
+- Make a count variable to count the length of the sequence and current variable to store the current number.
+- Now in a while loop, traverse and keep searching for consecutive elements until the condition is false.
+- Now store the maximum of longest_sequence and current length of the sequence.
+
+```c++
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_set<int> s(nums.begin(),nums.end()); // this is faster
+        
+        // for(int i = 0; i<nums.size(); i++)
+        // {
+        //     s.insert(nums[i]);
+        // }
+        
+        int longest_sequence = 0;
+        
+        for(int i=0; i<nums.size(); i++)
+        {
+            if(s.find(nums[i] - 1)!=s.end())
+                continue;
+            
+            else
+            {
+                int count = 0;
+                int current_element = nums[i];
+                
+                while(s.find(current_element) != s.end())
+                {
+                    count++;
+                    current_element++;
+                }
+                
+                longest_sequence = max(longest_sequence,count);
+            }
+        }
+        
+        return longest_sequence;
+    }
+};
+```
+
+### Review: Hash Table & Union Find
+
+```cpp
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        std::cout << "Hello World!\n";
+            return 0;
+    }
+};
+```
+
+Whether is the begin of the consecutive sequence:
+
+```
+if(s.find(nums[i] - 1)!=s.end())
+```
+
 ## (4) Median of Two Sorted Arrays
 
 ### Content
@@ -3266,6 +3458,8 @@ Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, re
 ### Solutions
 
 ### Review:
+
+
 
 
 
