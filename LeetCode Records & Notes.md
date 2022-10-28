@@ -3577,3 +3577,35 @@ def minWindow(self, s, t):
 Counter({'i': 4, 's': 4, 'p': 2, 'm': 1})
 ```
 
+
+
+## (49) Group Anagrams
+
+### Content
+
+**Example 1:**
+
+```
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+```
+
+**Example 2:**
+
+```
+Input: strs = [""]
+Output: [[""]]
+```
+
+### Try1
+
+Sort first
+
+Use hashmap to store
+
+
+
+### Solutions
+
+
+
