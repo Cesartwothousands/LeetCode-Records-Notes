@@ -1748,13 +1748,58 @@ call isBadVersion(4) -> true
 Then 4 is the first bad version.
 ```
 
-### Try1
+### Try1(Failed)
 
 Use a half to store n/2
 
 Use half to decide whether bigger or less
 
+### Solutions
 
+#### Binary Search
+
+Binary search ==> initialize **low, high and mid** for binary search
+
+while low pointer crosses high run the loop
+
+calculate for the mid
+
+if isBadVersion true then set high = mid;
+else set low = mid+1;
+
+Finally return low;
+
+```c++
+class Solution {
+public:
+    int firstBadVersion(int n) {
+
+        int low = 1;
+        int high = n;
+        int mid;
+        
+//////////////////////////////////////////////////////////////////////////////learn
+        while(low < high){
+
+            mid = low + (high-low) / 2;
+
+            if(isBadVersion(mid)){
+                high = mid;
+            }
+            else{
+                low = mid + 1;
+            }
+        }
+///////////////////////////////////////////////////////////////////////////////////
+        
+        return low;
+    }
+};
+```
+
+### Review: Binary Search
+
+mid = low + (high-low) / 2;
 
 
 
@@ -3627,3 +3672,28 @@ Use hashmap to store
 
 
 
+## (766) Toeplitz Matrix
+
+### Content
+
+### Try1(Failed)
+
+### Solutions
+
+```c++
+class Solution {
+public:
+    bool isToeplitzMatrix(vector<vector<int>>& matrix) {
+	for (int i = 0; i < matrix.size() - 1; i++) {
+		for (int j = 0;  j < matrix[0].size() - 1; j++) {
+			if (matrix[i][j] != matrix[i + 1][j + 1])
+				return false;
+		}
+	}
+	return true;
+}
+};
+
+```
+
+### Review: Matrix
