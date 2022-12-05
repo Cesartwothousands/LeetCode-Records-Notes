@@ -1,0 +1,1 @@
+Here is my LeetCode Notes, I add some of my own thinking and good solutions from LeetCode Community.
