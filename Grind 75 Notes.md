@@ -36,6 +36,313 @@ intuitive 直观的、直觉的
 
 # Grind 75: Array
 
+## (1) Two Sum
+
+### Content
+
+**Example 1:**
+
+```
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+```
+
+You may assume that each input would have ***exactly\* one solution**, and you may not use the *same* element twice.
+
+**Constraints:**
+
+- **Only one valid answer exists.**
+
+### Try1(Success)
+
+```python
+Hashtable:
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        Table = {}
+
+        for i in range(len(nums)):
+            
+            if( target - nums[i] == nums[i]) and (target - nums[i] in Table):
+                return [Table[nums[i]][0], i]
+            
+            if target - nums[i] in Table:
+                return [Table[target-nums[i]][0], i]
+
+            if nums[i] not in Table:
+                Table[nums[i]] = [i]
+```
+
+### Try2
+
+```python
+Two pointers:O(n^2)
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        lo = 0
+        while(1):
+            time = 1
+            hi = len(nums) - time
+            while (lo < hi):
+                if nums[lo] + nums[hi] == target:
+                    res = []
+                    res.append(lo)
+                    res.append(hi)
+                    return res
+                else:
+                    hi = hi - 1
+            lo = lo + 1
+```
+
+### Solutions
+
+#### Brute Force
+
+Two loop,  $O(n^2)$
+
+```
+for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[j] == target - nums[i]:
+                    return [i, j]
+```
+
+#### Two-pass Hash Table
+
+Have a map
+
+<u>check $target - nums[i]$</u>
+
+<u>must not be nums[i] itself!</u>
+
+> A simple implementation uses two iterations. In the first iteration, we add each element's value as a key and its index as a value to the hash table. Then, in the second iteration, we check if each element's complement (target - nums[i]*t**a**r**g**e**t*−*n**u**m**s*[*i*]) exists in the hash table. If it does exist, we return current element's index and its complement's index. Beware that the complement must not be nums[i]*n**u**m**s*[*i*] itself!
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {}
+        for i in range(len(nums)):
+            hashmap[nums[i]] = i
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in hashmap and hashmap[complement] != i:
+                return [i, hashmap[complement]] 
+```
+
+#### One-pass Hash Table
+
+Once you iterat and insert elements into the hash table
+
+Look back to check!
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {}
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in hashmap:
+                return [i, hashmap[complement]]
+            hashmap[nums[i]] = i
+```
+
+### Review: Hash Table
+
+One pass Hash Table, once you insert once you check
+
+-----
+
+## (167) Two Sum II - Input Array Is Sorted
+
+### Content
+
+**Example 1:**
+
+```
+Input: numbers = [2,7,11,15], target = 9
+Output: [1,2]
+Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1, 2].
+```
+
+**Example 2:**
+
+```
+Input: numbers = [2,3,4], target = 6
+Output: [1,3]
+Explanation: The sum of 2 and 4 is 6. Therefore index1 = 1, index2 = 3. We return [1, 3].
+```
+
+### Try1(Success)
+
+```python
+Hashmap
+
+Slow
+```
+
+### Try2(Success)
+
+```python
+Two pointers
+
+while lo<hi
+if lo + hi > tar:
+    hi--
+else:
+    lo++
+    
+    
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        
+        lo=0
+        hi=len(nums)-1
+
+        while(lo<hi):
+
+            if nums[lo]+nums[hi]==target:
+                return [lo+1,hi+1]
+            elif nums[lo]+nums[hi]<target:
+                lo+=1
+            else:
+                hi-=1
+```
+
+### Solutions
+
+### Review: Two Pointers
+
+Because it's sorted, so we can use two pointers to solve it quickly
+
+-----
+
+## (15) 3Sum
+
+### Content
+
+Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.
+
+Notice that the solution set must not contain duplicate triplets.
+
+### Try1(Failed)
+
+```
+3 pointers, run pointer is decided by lo and hi pointer
+```
+
+### Solution
+
+#### Depends situation
+
+-X1 -X2 +Y1
+
+-X1 +Y1 +Y2
+
+-X1 0 +Y2
+
+000
+
+```python
+def threeSum(self, nums: List[int]) -> List[List[int]]:
+
+	res = set()
+
+	#1. Split nums into three lists: negative numbers, positive numbers, and zeros
+	n, p, z = [], [], []
+	for num in nums:
+		if num > 0:
+			p.append(num)
+		elif num < 0: 
+			n.append(num)
+		else:
+			z.append(num)
+
+	#2. Create a separate set for negatives and positives for O(1) look-up times
+	N, P = set(n), set(p)
+
+	#3. If there is at least 1 zero in the list, add all cases where -num exists in N and num exists in P
+	#   i.e. (-3, 0, 3) = 0
+	if z:
+		for num in P:
+			if -1*num in N:
+				res.add((-1*num, 0, num))
+
+	#3. If there are at least 3 zeros in the list then also include (0, 0, 0) = 0
+	if len(z) >= 3:
+		res.add((0,0,0))
+
+	#4. For all pairs of negative numbers (-3, -1), check to see if their complement (4)
+	#   exists in the positive number set
+	for i in range(len(n)):
+		for j in range(i+1,len(n)):
+			target = -1*(n[i]+n[j])
+			if target in P:
+				res.add(tuple(sorted([n[i],n[j],target])))
+
+	#5. For all pairs of positive numbers (1, 1), check to see if their complement (-2)
+	#   exists in the negative number set
+	for i in range(len(p)):
+		for j in range(i+1,len(p)):
+			target = -1*(p[i]+p[j])
+			if target in N:
+				res.add(tuple(sorted([p[i],p[j],target])))
+
+	return res
+```
+
+#### Three pointers
+
+```python
+def threeSum(self, nums):
+    res = []
+    nums.sort()
+    for i in range(len(nums)-2):
+        if i > 0 and nums[i] == nums[i-1]:
+            continue
+        l, r = i+1, len(nums)-1
+        while l < r:
+            s = nums[i] + nums[l] + nums[r]
+            if s < 0:
+                l +=1 
+            elif s > 0:
+                r -= 1
+            else:
+                res.append((nums[i], nums[l], nums[r]))
+                while l < r and nums[l] == nums[l+1]:
+                    l += 1
+                while l < r and nums[r] == nums[r-1]:
+                    r -= 1
+                l += 1; r -= 1
+    return res
+```
+
+### Review: 3Sum & 3 Pointers
+
+First sort
+
+Second for i in range
+
+Third target' = target - nums[i]
+
+Fourth 2Sum for target'
+
+-----
+
+## (16) 3Sum Closest
+
+
+
+-----
+
+## (18) 4Sum
+
+
+
+-----
+
 ## (121) Best Time to Buy and Sell Stock
 
 ### Content
@@ -483,129 +790,6 @@ class Solution:
 ### Solutions
 
 ### Review: Two Pointers & Array & Sort
-
------
-
-## (1) Two Sum
-
-### Content
-
-**Example 1:**
-
-```
-Input: nums = [2,7,11,15], target = 9
-Output: [0,1]
-Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
-```
-
-You may assume that each input would have ***exactly\* one solution**, and you may not use the *same* element twice.
-
-**Constraints:**
-
-- **Only one valid answer exists.**
-
-### Try1
-
-```
-Boudaries:
-
-lo < hi
-
-lo < target // 2
-
-hi > target // 2
-
-
-
-Sort the List first
-
-		for i in range(0,len)
-				lo = i
-				While lo < hi						
-				if  num[lo] + num[hi] == target
-						res = 						
-						return res
-				else
-						hi--	
-```
-
-
-
-### Try2
-
-```python
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        lo = 0
-        while(1):
-            time = 1
-            hi = len(nums) - time
-            while (lo < hi):
-                if nums[lo] + nums[hi] == target:
-                    res = []
-                    res.append(lo)
-                    res.append(hi)
-                    return res
-                else:
-                    hi = hi - 1
-            lo = lo + 1
-```
-
-### Solutions
-
-#### Brute Force
-
-Two loop,  $O(n^2)$
-
-```
-for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
-                if nums[j] == target - nums[i]:
-                    return [i, j]
-```
-
-#### Two-pass Hash Table
-
-Have a map
-
-check $target - nums[i]$
-
-must not be nums[i] itself!
-
-> A simple implementation uses two iterations. In the first iteration, we add each element's value as a key and its index as a value to the hash table. Then, in the second iteration, we check if each element's complement (target - nums[i]*t**a**r**g**e**t*−*n**u**m**s*[*i*]) exists in the hash table. If it does exist, we return current element's index and its complement's index. Beware that the complement must not be nums[i]*n**u**m**s*[*i*] itself!
-
-```python
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        hashmap = {}
-        for i in range(len(nums)):
-            hashmap[nums[i]] = i
-        for i in range(len(nums)):
-            complement = target - nums[i]
-            if complement in hashmap and hashmap[complement] != i:
-                return [i, hashmap[complement]] 
-```
-
-#### One-pass Hash Table
-
-Once you iterat and insert elements into the hash table
-
-<u>Look back to check!</u>
-
-```python
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        hashmap = {}
-        for i in range(len(nums)):
-            complement = target - nums[i]
-            if complement in hashmap:
-                return [i, hashmap[complement]]
-            hashmap[nums[i]] = i
-```
-
-### Review
-
-One pass Hash Table, once you insert once you check
 
 -----
 
