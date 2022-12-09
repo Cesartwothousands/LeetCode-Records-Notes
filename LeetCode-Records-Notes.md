@@ -333,13 +333,88 @@ Fourth 2Sum for target'
 
 ## (16) 3Sum Closest
 
+### Content
 
+closest
+
+### Try1(Success)
+
+Use a variable res to store the difference of target
+
+```python
+class Solution:
+    def threeSumClosest(self, n: List[int], target: int) -> int:
+        n.sort()
+        result=0
+        res=[]
+        diff=float('inf')
+
+        for i in range(len(n)-2):
+            lo=i+1
+            hi=len(n)-1
+            tmptarget = target-n[i]
+            
+            while lo<hi:     
+                s2=n[lo]+n[hi]
+                if abs(tmptarget-s2)<diff:
+                    diff=abs(tmptarget-s2)
+                    res=[n[i],n[lo],n[hi]]
+                         
+                if tmptarget-s2==0:
+                    for rr in res: result+=rr
+                    return result
+
+                if tmptarget-s2<0:
+                    hi-=1
+                if tmptarget-s2>0:
+                    lo+=1
+
+        for rr in res: result+=rr
+        return result
+```
+
+### Solutions
+
+### Review: 3 Pointers
 
 -----
 
 ## (18) 4Sum
 
+### Content
 
+### Try1(Failed)
+
+```python
+class Solution:
+    def fourSum(self, n: List[int], target: int) -> List[List[int]]:
+        n.sort()
+        res=[]
+
+        for j in range(len(n)-3):
+            tmptarget = target-n[j]
+
+            for i in range(len(n)-2):
+                lo=i+1
+                hi=len(n)-1
+                tmptarget = tmptarget-n[i]
+                
+                while lo<hi:     
+                    s2=n[lo]+n[hi]
+                    if s2==tmptarget:
+                        res.append([n[j],n[i],n[lo],n[hi]])
+
+                    if tmptarget-s2<0:
+                        hi-=1
+                    if tmptarget-s2>0:
+                        lo+=1
+
+            return res   
+```
+
+### Solutions
+
+### Review:
 
 -----
 
