@@ -508,6 +508,196 @@ class Solution:
 
 -----
 
+## (217) Contains Duplicate
+
+### Content
+
+**Example 1:**
+
+```
+Input: nums = [1,2,3,1]
+Output: true
+```
+
+**Example 2:**
+
+```
+Input: nums = [1,2,3,4]
+Output: false
+```
+
+### Try1(Success)
+
+#### Sort
+
+```python
+class Solution(object):
+    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+
+        nums.sort()
+        for i in range(len(nums)):
+            if i>0:
+                if nums[i] == nums[i-1]:
+                    return True
+
+        return False 
+```
+
+### Solutions
+
+#### Set
+
+```python
+class Solution(object):
+    def containsDuplicate(self, nums):
+        seen = set()
+        for n in nums:
+            if n in seen:
+                return True
+            seen.add(n)
+        return False
+```
+
+#### Hash table
+
+### Review: Sort & Set & Hash Table
+
+set.add(n)
+numsSet =  set(nums)
+
+-----
+
+## (219) Contains Duplicate II
+
+### Content
+
+Given an integer array `nums` and an integer `k`, return `true` if there are two **distinct indices** `i` and `j` in the array such that `nums[i] == nums[j]` and `abs(i - j) <= k`.
+
+### Try1(Success)
+
+Use a Hash table to store the location of first number
+
+every time meet another same number, compare the abs(i - j)
+
+```python
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        H = {}
+        for i in range(len(nums)):
+            if not nums[i] in H:
+                H[nums[i]] = i 
+            else:
+                if abs(i - H[nums[i]]) <= k:
+                    return True
+                H[nums[i]] = i
+
+        return False
+```
+
+### Solutions
+
+```C++
+Cpp solution:
+
+class Solution
+{
+public:
+    bool containsNearbyDuplicate(vector<int> &nums, int k)
+    {
+        unordered_map<int, int> mp;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (mp.count(nums[i]))
+            {
+                int diff = abs(mp[nums[i]] - 1);
+                if (diff <= k)
+                    {
+                        return true;
+                    }
+                mp[nums[i]] = i;
+            }
+            return false;
+        }
+    }
+};
+```
+
+### Review: Hash Table
+
+-----
+
+## (220) Contains Duplicate III
+
+### Content
+
+You are given an integer array `nums` and two integers `indexDiff` and `valueDiff`.
+
+Find a pair of indices `(i, j)` such that:
+
+- `i != j`,
+- `abs(i - j) <= indexDiff`.
+- `abs(nums[i] - nums[j]) <= valueDiff`, and
+
+Return `true` *if such pair exists or* `false` *otherwise*.
+
+### Try1(Failed)
+
+Use a hashtable to store
+everytime found num i, use its location j insert in hashtable
+every num search in hashtable
+if valueDiff:
+    if indexDiff:
+	    return true
+
+```python
+class Solution:
+    def containsNearbyAlmostDuplicate(self, n: List[int], k: int, t: int) -> bool:
+        h={}
+        for i in range(len(n)):
+            if n[i] in h:
+                if abs(h[n[i]]-i)<=k:
+                    return True
+            h[n[i]]=i
+            
+            for j in range(n[i]-t,n[i]+t+1):
+                if j in h and h[j]!=i:
+                    if abs(h[j]-i)<=k:
+                        return True
+
+        return False
+    
+Too slow
+```
+
+### Solutions
+
+#### Window
+
+```python
+class Solution:
+    def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
+        if not nums or k<1 or t<0 or (t==0 and len(nums)==len(set(nums))): return False
+        for i in range(len(nums)):
+            for j in range(1,k+1):
+                if (i+j)>=len(nums): break
+                if abs(nums[i+j]-nums[i])<=t: return True
+        return False
+    
+Too Slow, TLE
+```
+
+#### Bucket Sort
+
+![220](220.jpg)
+
+### Review: Window & Bucket Sort
+
+-----
+
 ## (121) Best Time to Buy and Sell Stock
 
 ### Content
@@ -674,125 +864,6 @@ LeetCode give 7 solutions:
 >https://leetcode.com/problems/majority-element/solutions/127412/majority-element/
 
 ### Review: Array & Hash Table & Sort & Divide and Conquer
-
------
-
-## (217) Contains Duplicate
-
-### Content
-
-**Example 1:**
-
-```
-Input: nums = [1,2,3,1]
-Output: true
-```
-
-**Example 2:**
-
-```
-Input: nums = [1,2,3,4]
-Output: false
-```
-
-### Try1(Success)
-
-#### Sort
-
-```python
-class Solution(object):
-    def containsDuplicate(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
-
-        nums.sort()
-        for i in range(len(nums)):
-            if i>0:
-                if nums[i] == nums[i-1]:
-                    return True
-
-        return False 
-```
-
-### Solutions
-
-#### Set
-
-```python
-class Solution(object):
-    def containsDuplicate(self, nums):
-        seen = set()
-        for n in nums:
-            if n in seen:
-                return True
-            seen.add(n)
-        return False
-```
-
-#### Hash table
-
-### Review: Array & Sort & Hash Table
-
-set.add(n)
-numsSet =  set(nums)
-
------
-
-## (219) Contains Duplicate II
-
-### Content
-
-Given an integer array `nums` and an integer `k`, return `true` if there are two **distinct indices** `i` and `j` in the array such that `nums[i] == nums[j]` and `abs(i - j) <= k`.
-
-### Try1(Success)
-
-Use a Hash table to store the location of first number
-
-every time meet another same number, compare the abs(i - j)
-
-```python
-class Solution:
-    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        H = {}
-        for i in range(len(nums)):
-            if not nums[i] in H:
-                H[nums[i]] = i 
-            else:
-                if abs(i - H[nums[i]]) <= k:
-                    return True
-                H[nums[i]] = i
-
-        return False
-```
-
-### Solutions
-
-### Review: Hash Table
-
------
-
-## (220) Contains Duplicate III
-
-### Content
-
-You are given an integer array `nums` and two integers `indexDiff` and `valueDiff`.
-
-Find a pair of indices `(i, j)` such that:
-
-- `i != j`,
-- `abs(i - j) <= indexDiff`.
-- `abs(nums[i] - nums[j]) <= valueDiff`, and
-
-Return `true` *if such pair exists or* `false` *otherwise*.
-
-### Try1(Failed)
-
-### Solutions
-
-
-### Review: 
 
 -----
 
