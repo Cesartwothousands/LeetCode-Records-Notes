@@ -48,7 +48,7 @@ Output: [0,1]
 Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 ```
 
-You may assume that each input would have ***exactly\* one solution**, and you may not use the *same* element twice.
+You may assume that each input would have ***exactly\* one Solutions**, and you may not use the *same* element twice.
 
 **Constraints:**
 
@@ -59,7 +59,7 @@ You may assume that each input would have ***exactly\* one solution**, and you m
 ```python
 Hashtable:
 
-class Solution:
+class Solutions:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         Table = {}
 
@@ -80,7 +80,7 @@ class Solution:
 ```python
 Two pointers:O(n^2)
 
-class Solution:
+class Solutions:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         lo = 0
         while(1):
@@ -97,7 +97,7 @@ class Solution:
             lo = lo + 1
 ```
 
-### Solutions
+### Solutionss
 
 #### Brute Force
 
@@ -121,7 +121,7 @@ Have a map
 > A simple implementation uses two iterations. In the first iteration, we add each element's value as a key and its index as a value to the hash table. Then, in the second iteration, we check if each element's complement (target - nums[i]*t**a**r**g**e**t*−*n**u**m**s*[*i*]) exists in the hash table. If it does exist, we return current element's index and its complement's index. Beware that the complement must not be nums[i]*n**u**m**s*[*i*] itself!
 
 ```python
-class Solution:
+class Solutions:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         hashmap = {}
         for i in range(len(nums)):
@@ -139,7 +139,7 @@ Once you iterat and insert elements into the hash table
 Look back to check!
 
 ```python
-class Solution:
+class Solutions:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         hashmap = {}
         for i in range(len(nums)):
@@ -195,7 +195,7 @@ else:
     lo++
     
     
-class Solution:
+class Solutions:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
         lo=0
@@ -211,7 +211,7 @@ class Solution:
                 hi-=1
 ```
 
-### Solutions
+### Solutionss
 
 ### Review: Two Pointers
 
@@ -225,7 +225,7 @@ Because it's sorted, so we can use two pointers to solve it quickly
 
 Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.
 
-Notice that the solution set must not contain duplicate triplets.
+Notice that the Solutions set must not contain duplicate triplets.
 
 ### Try1(Failed)
 
@@ -233,7 +233,7 @@ Notice that the solution set must not contain duplicate triplets.
 3 pointers, run pointer is decided by lo and hi pointer
 ```
 
-### Solution
+### Solutions
 
 #### Depends situation
 
@@ -342,7 +342,7 @@ closest
 Use a variable res to store the difference of target
 
 ```python
-class Solution:
+class Solutions:
     def threeSumClosest(self, n: List[int], target: int) -> int:
         n.sort()
         result=0
@@ -373,7 +373,7 @@ class Solution:
         return result
 ```
 
-### Solutions
+### Solutionss
 
 ### Review: 3 Pointers
 
@@ -386,7 +386,7 @@ class Solution:
 ### Try1(Failed)
 
 ```python
-class Solution:
+class Solutions:
     def fourSum(self, n: List[int], target: int) -> List[List[int]]:
         n.sort()
         res=[]
@@ -412,7 +412,7 @@ class Solution:
             return res   
 ```
 
-### Solutions
+### Solutionss
 
 #### K Sum
 
@@ -421,7 +421,7 @@ We can implement k - 2 loops using a recursion. We will pass the starting point 
 
 Recursion:
     
-class Solution:
+class Solutions:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
 	
         def kSum(nums: List[int], target: int, k: int) -> List[List[int]]:
@@ -475,7 +475,7 @@ class Solution:
 #### Try2 two for loop
 
 ```python
-class Solution:
+class Solutions:
     def fourSum(self, n: List[int], target: int) -> List[List[int]]:
         n.sort()
         res = []
@@ -531,7 +531,7 @@ Output: false
 #### Sort
 
 ```python
-class Solution(object):
+class Solutions(object):
     def containsDuplicate(self, nums):
         """
         :type nums: List[int]
@@ -547,12 +547,12 @@ class Solution(object):
         return False 
 ```
 
-### Solutions
+### Solutionss
 
 #### Set
 
 ```python
-class Solution(object):
+class Solutions(object):
     def containsDuplicate(self, nums):
         seen = set()
         for n in nums:
@@ -584,7 +584,7 @@ Use a Hash table to store the location of first number
 every time meet another same number, compare the abs(i - j)
 
 ```python
-class Solution:
+class Solutions:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
         H = {}
         for i in range(len(nums)):
@@ -598,12 +598,12 @@ class Solution:
         return False
 ```
 
-### Solutions
+### Solutionss
 
 ```C++
-Cpp solution:
+Cpp Solutions:
 
-class Solution
+class Solutions
 {
 public:
     bool containsNearbyDuplicate(vector<int> &nums, int k)
@@ -654,7 +654,7 @@ if valueDiff:
 	    return true
 
 ```python
-class Solution:
+class Solutions:
     def containsNearbyAlmostDuplicate(self, n: List[int], k: int, t: int) -> bool:
         h={}
         for i in range(len(n)):
@@ -673,12 +673,12 @@ class Solution:
 Too slow
 ```
 
-### Solutions
+### Solutionss
 
 #### Window
 
 ```python
-class Solution:
+class Solutions:
     def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
         if not nums or k<1 or t<0 or (t==0 and len(nums)==len(set(nums))): return False
         for i in range(len(nums)):
@@ -726,7 +726,7 @@ for i in range(len())
 ​	res = max(p) - temp
 
 ``` python
-class Solution:
+class Solutions:
     def maxProfit(self, prices: List[int]) -> int:
         temp = 0
         res = 0
@@ -762,7 +762,7 @@ res = num - Min
 if res > Res, Res = res
 
 ```python
-class Solution:
+class Solutions:
     def maxProfit(self, prices: List[int]) -> int:
         res = 0
         Res = 0
@@ -781,7 +781,7 @@ class Solution:
         return Res
 ```
 
- ### Solutions
+ ### Solutionss
 
 ### Review: Array
 
@@ -807,10 +807,10 @@ You must write an algorithm that runs in `O(n)` time and without using the divis
 
 ### Try1(Failed)
 
-### Solutions
+### Solutionss
 
 ```python
-class Solution:
+class Solutions:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         res = []
         
@@ -840,13 +840,13 @@ When we meet Prefix Sum, we often use Inclusion–exclusion principle (容斥原
 ### Try 1 & 2
 
 ```python
-class Solution:
+class Solutions:
     def majorityElement(self, nums: List[int]) -> int:
         for i in set(nums):
             if nums.count(i) > len(nums)//2:
                 return i
             
-class Solution:
+class Solutions:
     def majorityElement(self, nums) -> int:
         H_2 = {}
 
@@ -857,11 +857,11 @@ class Solution:
             if H_2[key] > len(nums)//2:
 ```
 
-### Solutions
+### Solutionss
 
-LeetCode give 7 solutions:
+LeetCode give 7 Solutionss:
 
->https://leetcode.com/problems/majority-element/solutions/127412/majority-element/
+>https://leetcode.com/problems/majority-element/Solutionss/127412/majority-element/
 
 ### Review: Array & Hash Table & Sort & Divide and Conquer
 
@@ -887,7 +887,7 @@ else:
 
 return false
 
-### Solutions
+### Solutionss
 
 **Time complexity** : O(nlogn). The time complexity is dominated by sorting. Once the array has been sorted, only O(n) time is taken to go through the array and determine if there is any overlap.
 
@@ -902,7 +902,7 @@ def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
 ```
 
 ```c++
-class Solution {
+class Solutions {
     public boolean canAttendMeetings(Interval[] intervals) {
         Arrays.sort(intervals, new Comparator<Interval>() {
            public int compare(Interval i1, Interval i2) {
@@ -948,7 +948,7 @@ i++
 l--
 
 ```Python
-class Solution:
+class Solutions:
     def moveZeroes(self, nums: List[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
@@ -965,7 +965,7 @@ class Solution:
             l -= 1
 ```
 
-### Solutions
+### Solutionss
 
 #### Two Pointers
 
@@ -990,7 +990,7 @@ Given an integer array `nums` sorted in **non-decreasing** order, return *an arr
 
 
 
-> **Follow up:** Squaring each element and sorting the new array is very trivial, could you find an `O(n)` solution using a different approach?
+> **Follow up:** Squaring each element and sorting the new array is very trivial, could you find an `O(n)` Solutions using a different approach?
 
 ### Try1(Success)
 
@@ -1001,7 +1001,7 @@ from end and start
 campare each other
 
 ```python
-class Solution:
+class Solutions:
     def sortedSquares(self, nums: List[int]) -> List[int]:
         l = len(nums)
         end = l - 1
@@ -1023,9 +1023,345 @@ class Solution:
         ##or return res[::-1]
 ```
 
-### Solutions
+### Solutionss
 
 ### Review: Two Pointers & Array & Sort
+
+-----
+
+## (39) Combination Sum
+
+### Content
+
+**Example 1:**
+
+```
+Input: candidates = [2,3,6,7], target = 7
+Output: [[2,2,3],[7]]
+Explanation:
+2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
+7 is a candidate, and 7 = 7.
+These are the only two combinations.
+```
+
+**Example 2:**
+
+```
+Input: candidates = [2,3,5], target = 8
+Output: [[2,2,2,2],[2,3,3],[3,5]]
+```
+
+**Example 3:**
+
+```
+Input: candidates = [2], target = 1
+Output: []
+```
+
+### Try1(Failed)
+
+```python
+use a new []
+for j in cans:
+    if j>t:
+        break
+    append(j)
+    
+recursive
+```
+
+### Solutions
+
+
+
+### Reveiw:
+
+
+
+------
+
+## (57) Insert Interval
+
+### Content
+
+You are given an array of non-overlapping intervals `intervals` where `intervals[i] = [starti, endi]` represent the start and the end of the `ith` interval and `intervals` is sorted in ascending order by `starti`. You are also given an interval `newInterval = [start, end]` that represents the start and end of another interval.
+
+Insert `newInterval` into `intervals` such that `intervals` is still sorted in ascending order by `starti` and `intervals` still does not have any overlapping intervals (merge overlapping intervals if necessary).
+
+Return `intervals` *after the insertion*.
+
+### Try1(Failed)
+
+I tired
+
+### Solutions
+
+Boring!
+
+```ruby
+class Solutions:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        result = []
+        
+        for interval in intervals:
+			# the new interval is after the range of other interval, so we can leave the current interval baecause the new one does not overlap with it
+            if interval[1] < newInterval[0]:
+                result.append(interval)
+            # the new interval's range is before the other, so we can add the new interval and update it to the current one
+            elif interval[0] > newInterval[1]:
+                result.append(newInterval)
+                newInterval = interval
+            # the new interval is in the range of the other interval, we have an overlap, so we must choose the min for start and max for end of interval 
+            elif interval[1] >= newInterval[0] or interval[0] <= newInterval[1]:
+                newInterval[0] = min(interval[0], newInterval[0])
+                newInterval[1] = max(newInterval[1], interval[1])
+
+        
+        result.append(newInterval); 
+        return result
+```
+
+### Reveiw: Array
+
+-----
+
+## (75) Sorted Colors
+
+### Content
+
+Basic Sorted problem, first time C++ Solutions
+
+### Try1(Falied)
+
+### Solutionss
+
+#### Sort function
+
+```cpp
+class Solutions {
+public:
+    void sortColors(vector<int>& nums) {
+       sort(nums.begin(), nums.end());
+    }
+};
+```
+
+#### Keep a count of 0's 1's and 2's**
+
+Time complexity - O(2N)
+
+```cpp
+class Solutions {
+public:
+    void sortColors(vector<int>& nums) {
+        int count0 = 0;
+        int count1 = 0; 
+        int count2  = 0;
+        for(int i =0; i< nums.size(); i++){
+            if(nums[i] == 0){
+                count0++;
+            }else if (nums[i] == 1){
+                count1++;
+            }else if (nums[i] ==2 ){
+                count2++;
+            }
+            
+         }
+        for(int i =0; i< count0; i++){
+            nums[i] =0;
+        }
+        for(int i =count0; i< (count1 + count0); i++){
+            nums[i] =1;
+        }
+        for(int i =(count1 + count0); i< nums.size(); i++){
+            nums[i] =2;
+        }
+        
+    }
+};
+```
+
+#### **Using 3 pointers**
+
+Time complexity - O(N)
+
+```cpp
+class Solutions {
+public:
+    void sortColors(vector<int>& nums) {
+        int low =0; 
+        int high = nums.size()-1;
+        int mid =0;
+        
+        while(mid <= high){
+            if(nums[mid] == 0){
+                swap(nums[mid], nums[low]);
+                low++;
+                mid++;
+            }
+            else if(nums[mid] == 1){
+                mid++;
+            }
+            else {
+                swap(nums[mid], nums[high]);
+                high--;
+            }
+        }
+    }
+```
+
+### Review: Tradtional Sorting & Three Pointers
+
+swap(nums[i], nums[j])
+
+-----
+
+## (56) Merge Intervals
+
+
+
+-----
+
+## (128) Longest Consecutive Sequence
+
+### Content
+
+Given an unsorted array of integers `nums`, return *the length of the longest consecutive elements sequence.*
+
+You must write an algorithm that runs in `O(n)` time.
+
+### Try1(Failed)
+
+### Solutionss
+
+#### Brute
+
+```python
+class Solutions:
+    def longestConsecutive(self, nums):
+        longest_streak = 0
+
+        for num in nums:
+            current_num = num
+            current_streak = 1
+
+            while current_num + 1 in nums:
+                current_num += 1
+                current_streak += 1
+
+            longest_streak = max(longest_streak, current_streak)
+
+        return longest_streak
+```
+
+- Time complexity : O(n3)O(n^3)*O*(*n*3).
+
+  The outer loop runs exactly nn*n* times, and because `currentNum` increments by 1 during each iteration of the `while` loop, it runs in O(n)O(n)*O*(*n*) time. Then, on each iteration of the `while` loop, an O(n)O(n)*O*(*n*) lookup in the array is performed. Therefore, this brute force algorithm is really three nested O(n)O(n)*O*(*n*) loops, which compound multiplicatively to a cubic runtime.
+
+#### Sorting
+
+
+
+#### Set
+
+- Insert all the elements of the array into set.
+- **Check if the previous number (nums[i] - 1) is present in the set**, if it is then that number (nums[i]) is not the starting of the sequence.
+- If previous number is not present, that means that number is the starting of the sequence.
+- Make a count variable to count the length of the sequence and current variable to store the current number.
+- Now in a while loop, traverse and keep searching for consecutive elements until the condition is false.
+- Now store the maximum of longest_sequence and current length of the sequence.
+
+```c++
+class Solutions {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_set<int> s(nums.begin(),nums.end()); // this is faster
+        
+        // for(int i = 0; i<nums.size(); i++)
+        // {
+        //     s.insert(nums[i]);
+        // }
+        
+        int longest_sequence = 0;
+        
+        for(int i=0; i<nums.size(); i++)
+        {
+            if(s.find(nums[i] - 1)!=s.end())
+                continue;
+            
+            else
+            {
+                int count = 0;
+                int current_element = nums[i];
+                
+                while(s.find(current_element) != s.end())
+                {
+                    count++;
+                    current_element++;
+                }
+                
+                longest_sequence = max(longest_sequence,count);
+            }
+        }
+        
+        return longest_sequence;
+    }
+};
+```
+
+### Review: Hash Table & Union Find
+
+```cpp
+class Solutions {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        std::cout << "Hello World!\n";
+            return 0;
+    }
+};
+```
+
+Whether is the begin of the consecutive sequence:
+
+```
+if(s.find(nums[i] - 1)!=s.end())
+```
+
+-----
+
+## (232) Implement Queue using Stacks
+
+### Content
+
+```
+Input
+["MyQueue", "push", "push", "peek", "pop", "empty"]
+[[], [1], [2], [], [], []]
+Output
+[null, null, null, 1, 1, false]
+
+Explanation
+MyQueue myQueue = new MyQueue();
+myQueue.push(1); // queue is: [1]
+myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
+myQueue.peek(); // return 1
+myQueue.pop(); // return 1, queue is [2]
+myQueue.empty(); // return false
+```
+
+### Try1(failed)
+
+I don't know how to code in class
+
+### Solutions
+
+```python
+
+```
+
+### Review:
+
+
 
 -----
 
@@ -1052,7 +1388,7 @@ Explanation: "amanaplanacanalpanama" is a palindrome.
 Use List to store string, use a pop(0),pop(-1)stack to make decesion
 
 ```python
-class Solution:
+class Solutions:
     def isPalindrome(self, s: str) -> bool:
         s = s.lower()
         S = []
@@ -1075,12 +1411,12 @@ class Solution:
             return True
 ```
 
-### Solutions
+### Solutionss
 
 #### Shortest and funny:
 
 ```python
-class Solution:
+class Solutions:
     def isPalindrome(self, s: str) -> bool:
             newS= [i.lower() for i in s if i.isalnum()]
             return newS == newS[::-1]
@@ -1089,7 +1425,7 @@ class Solution:
 #### Two Pointer!
 
 ```python
-class Solution:
+class Solutions:
     def isPalindrome(self, s):
         l, r = 0, len(s)-1
         # First and Last
@@ -1153,7 +1489,7 @@ Second For: if == :
 Third For review
 
 ```python
-class Solution:
+class Solutions:
     def isAnagram(self, s: str, t: str) -> bool:
         Hashmap = {}
         if len(s) != len(t):
@@ -1175,7 +1511,7 @@ class Solution:
         return True
 ```
 
-### Solutions
+### Solutionss
 
 #### Traditional Dictionary
 
@@ -1228,7 +1564,7 @@ Use a Hashtable to see if any words to repeat
 Use a varaiable to store the begin of our substring, we call it mark
 
 ```python
-class Solution:
+class Solutions:
     def lengthOfLongestSubstring(self, s: str) -> int:
         l = 0
         mark = 0
@@ -1248,12 +1584,12 @@ class Solution:
         return l
 ```
 
-### Solutions
+### Solutionss
 
 #### Brute
 
 ```python
-class Solution:
+class Solutions:
     def lengthOfLongestSubstring(self, s: str) -> int:
         def check(start, end):
             chars = set()
@@ -1305,7 +1641,7 @@ Explanation: One longest palindrome that can be built is "dccaccd", whose length
 Build a Hash Table
 
 ```python
-class Solution:
+class Solutions:
     def longestPalindrome(self, s: str) -> int:
         Hashmap = {}
         l = []
@@ -1327,7 +1663,7 @@ class Solution:
         return res
 ```
 
-### Solutions
+### Solutionss
 
 ### Review: Hash Table & String
 
@@ -1349,7 +1685,7 @@ Use a list to collect all letters(in special orders) in first word
 Use a count to count how long the common prefix is
 
 ```python
-class Solution(object):
+class Solutions(object):
     def longestCommonPrefix(self, strs):
         """
         :type strs: List[str]
@@ -1384,7 +1720,7 @@ class Solution(object):
 ### Try2(Success)
 
 ```python
-class Solution:
+class Solutions:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         l = 200
         exm = ""
@@ -1410,9 +1746,9 @@ class Solution:
         return string
 ```
 
-### Solutions
+### Solutionss
 
-https://leetcode.com/problems/longest-common-prefix/solutions/127449/longest-common-prefix/
+https://leetcode.com/problems/longest-common-prefix/Solutionss/127449/longest-common-prefix/
 
 
 ### Review: String
@@ -1420,6 +1756,22 @@ https://leetcode.com/problems/longest-common-prefix/solutions/127449/longest-com
 Swap in python:
 
 nums[i], nums[zero] = nums[zero], nums[i]
+
+-----
+
+## (11) Container With Most Water
+
+### Content
+
+
+
+### Try1
+
+
+
+-----
+
+
 
 -----
 
@@ -1442,7 +1794,7 @@ Given an array of integers `nums` which is sorted in ascending order, and an int
 ### Try1
 
 ```python
-class Solution:
+class Solutions:
     def search(self, nums: List[int], target: int) -> int:
         if nums[len(nums)//2-1] >= target:
             nums = nums[:len(nums)//2-1]
@@ -1461,7 +1813,7 @@ class Solution:
 ### Try2
 
 ```python
-class Solution:
+class Solutions:
     def search(self, nums: List[int], target: int) -> int:
         while(len(nums) > 1):
             if nums[len(nums)//2-1] >= target:
@@ -1476,12 +1828,12 @@ class Solution:
                 return -1
 ```
 
-### Solutions
+### Solutionss
 
 #### Two Pointers Loop
 
 ```python
-class Solution:
+class Solutions:
     def search(self, nums: List[int], target: int) -> int:
         left=0
         right=len(nums)-1
@@ -1496,10 +1848,10 @@ class Solution:
         return -1
 ```
 
-#### Recursive Solution
+#### Recursive Solutions
 
 ```python
-class Solution(object):
+class Solutions(object):
     def search(self, nums, target,count=0):
         length=len(nums)
         half_len=length//2
@@ -1545,7 +1897,7 @@ Use a half to store n/2
 
 Use half to decide whether bigger or less
 
-### Solutions
+### Solutionss
 
 #### Binary Search
 
@@ -1561,7 +1913,7 @@ else set low = mid+1;
 Finally return low;
 
 ```c++
-class Solution {
+class Solutions {
 public:
     int firstBadVersion(int n) {
 
@@ -1607,14 +1959,14 @@ Input: root = [4,2,7,1,3,6,9]
 Output: [4,7,2,9,6,3,1]
 ```
 
-### Solutions
+### Solutionss
 
 ```python
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
+class Solutions:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         
         if not root or (not root.left and not root.right):
@@ -1653,7 +2005,7 @@ Two Hashmap
 if ==, Hashmap[key] -= 1
 
 ```Python
-class Solution:
+class Solutions:
     def canConstruct(self, r: str, m: str) -> bool:
         H_2 = {}
 
@@ -1670,7 +2022,7 @@ class Solution:
         return True
 ```
 
-### Solutions
+### Solutionss
 
 #### Hashmap
 
@@ -1681,7 +2033,7 @@ Try1
 Use set and .count function 
 
 ```python
-class Solution:
+class Solutions:
     def canConstruct(self, ransomNote, magazine):
         for i in set(ransomNote):
             if magazine.count(i) < ransomNote.count(i):
@@ -1753,7 +2105,7 @@ if len(l1)==0:
 
 return res
 
-### Solutions
+### Solutionss
 
 Check if any of the lists is empty.
 
@@ -1765,7 +2117,7 @@ Use LinkedList
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution:
+class Solutions:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         l1 = list1
         l2 = list2
@@ -1855,7 +2207,7 @@ compare every 2 digit
 3 if
 
 ```python
-class Solution:
+class Solutions:
     def isValid(self, s: str) -> bool:
         S = list(s)
         l = len(S)
@@ -1890,7 +2242,7 @@ if correspodding, pop()
 if len(stack) == 0, True
 
 ```python
-class Solution:
+class Solutions:
     def isValid(self, s: str) -> bool:
         stack = []
         i = 0
@@ -1931,7 +2283,7 @@ class Solution:
 
 Wrong understanding: "{[]}" is True too
 
-### Solutions
+### Solutionss
 
 Traverse first
 
@@ -1980,7 +2332,7 @@ def isValid(s: str) -> bool:
 Stack
 
 ```python
-class Solution:
+class Solutions:
     def evalRPN(self, tokens: List[str]) -> int:
         voc = []
         temp = 0
@@ -2036,7 +2388,7 @@ Note that after backspacing an empty text, the text will continue empty.
 easy stack problem
 
 ```python
-class Solution:
+class Solutions:
     def backspaceCompare(self, s: str, t: str) -> bool:
         ss = []
         tt = []
@@ -2059,7 +2411,7 @@ class Solution:
 
 Use elif ss: to prevent the [] situation
 
-### Solutions
+### Solutionss
 
 Another one: Two pointers
 
@@ -2124,7 +2476,7 @@ if i in range(n//2):
 write two list to use their value of factorial 
 
 ```python
-class Solution:
+class Solutions:
     def climbStairs(self, n: int) -> int:
         p = n // 2 
         Sum, ssm = 0, 0
@@ -2143,7 +2495,7 @@ class Solution:
         return int(Sum)
 ```
 
-### Solutions
+### Solutionss
 
 #### See it as a Fibonacci
 
@@ -2158,7 +2510,7 @@ def climbStairs1(self, n):
 ```
 
 ```python
-class Solution:
+class Solutions:
 
 # Bottom up, O(n) space
     def climbStairs(self, n):
@@ -2218,7 +2570,7 @@ Failed
 Bruce
 
 ```python
-class Solution:
+class Solutions:
     def romanToInt(self, s: str) -> int:
         L = []
         S = 0
@@ -2252,12 +2604,12 @@ class Solution:
 
 better than 5.1%
 
-### Solutions
+### Solutionss
 
 #### Dictionary to replace
 
 ```java
-class Solution:
+class Solutions:
     def romanToInt(self, s: str) -> int:
         translations = {
             "I": 1,
@@ -2310,7 +2662,7 @@ Explanation: From left to right, it reads -121. From right to left, it becomes 1
 Two pointers,i and -i
 
 ```python
-class Solution:
+class Solutions:
     def isPalindrome(self, x: int) -> bool:
         if x < 0:
             return False
@@ -2329,7 +2681,7 @@ class Solution:
             return True
 ```
 
-### Solutions
+### Solutionss
 
 > Second idea would be reverting the number itself, and then compare the number with original number, if they are the same, then the number is a palindrome. However, if the reversed number is larger than int.MAX\text{int.MAX}int.MAX, we will hit integer overflow problem.
 >
@@ -2355,6 +2707,57 @@ int revertedNumber = 0;
 Just revert half of x
 
 ### Review: Math & Array & String
+
+-----
+
+## (50) Pow(x, n)
+
+### Content
+
+### Try1(Failed)
+
+```Java
+if n<0:
+else if
+else
+    
+while
+
+recursion
+```
+
+### Solutions
+
+#### Recursion myPow
+
+```java
+class Solution {
+    public double myPow(double x, int n) {
+        if(n<0) return 1/x * myPow(1/x, -(n+1));
+        if(n==0) return 1;
+        if(n==2) return x*x;
+        if(n%2==0) return myPow( myPow(x, n/2), 2);
+        else return x*myPow( myPow(x, n/2), 2);
+    }
+}
+```
+
+#### double myPow
+
+```java
+double myPow(double x, int n) { 
+    if(n==0) return 1;
+    double t = myPow(x,n/2);
+    if(n%2) return n<0 ? 1/x*t*t : x*t*t;
+    else return t*t;
+}
+```
+
+### Review:
+
+-----
+
+
 
 -----
 
@@ -2389,7 +2792,7 @@ Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
 
 NaN
 
-### Solutions
+### Solutionss
 
 #### Two pointers
 
@@ -2488,7 +2891,7 @@ do the sum later
 
 
 ```python
-class Solution:
+class Solutions:
     def sumEvenAfterQueries(self, nums: List[int], queries: List[List[int]]) -> List[int]:
         res = []
         Nums = []
@@ -2518,12 +2921,12 @@ class Solution:
 
 **Time Limit Exceeded**
 
-### Solutions
+### Solutionss
 
 #### Approach 1: Maintain Array Sum
 
 ```python
-class Solution(object):
+class Solutions(object):
     def sumEvenAfterQueries(self, A, queries):
         S = sum(x for x in A if x % 2 == 0)
         ans = []
@@ -2544,7 +2947,7 @@ faster than 8.64% of Python3 online submissions
 #### Better speed
 
 ```python
-class Solution:
+class Solutions:
     def sumEvenAfterQueries(self, nums: List[int], queries: List[List[int]]) -> List[int]:
         lst=[]
         su=0
@@ -2618,7 +3021,7 @@ return res
 ### Try2
 
 ``` python
-class Solution:
+class Solutions:
     def reverseWords(self, s: str) -> str:
         res = []
         List = []
@@ -2645,7 +3048,7 @@ class Solution:
 
 > Runtime: 116 ms, faster than 24.29% of Python3 online submissions for Reverse Words in a String III.
 
-### Solutions
+### Solutionss
 
 #### Using Two Pointers
 
@@ -2670,7 +3073,7 @@ After modulo 109 + 7, the result is 505379714.
 ### Try1
 
 ```python
-class Solution:
+class Solutions:
     def concatenatedBinary(self, n: int) -> int:
         Len = []
         Num = []
@@ -2702,10 +3105,10 @@ class Solution:
 
 > Time Limit Exceeded
 
-### Solutions
+### Solutionss
 
 ```python
-class Solution:
+class Solutions:
     def concatenatedBinary(self, n: int) -> int:
         bits, res, MOD = 1, 0, 10**9 + 7
         for x in range(1, n + 1):
@@ -2723,7 +3126,7 @@ The bitwise left shift operator (`<<`)
 
 
 ```python
-class Solution:
+class Solutions:
     def concatenatedBinary(self, n: int) -> int:
         s = 0
         for i in range(1, n+1):
@@ -2755,10 +3158,10 @@ return true if the tree has a root-to-leaf path such that adding up all the valu
 
 ### Try 1
 
-### Solutions
+### Solutionss
 
 ```python
-class Solution:
+class Solutions:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if root is None:
             return False
@@ -2803,7 +3206,7 @@ if None:
 
 ​	List = [] # clean and reset the List
 
-### Solutions
+### Solutionss
 
 ``` python
 def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
@@ -2841,7 +3244,7 @@ each string `equations[i]` is of length `4` and takes one of two different forms
 ### Try1
 
 ```python
-class Solution:
+class Solutions:
     def equationsPossible(self, equations: List[str]) -> bool:
         left = equations[0][0]
         right = equations[0][-1]
@@ -2863,7 +3266,7 @@ class Solution:
 
 Just consider the interger will be 2
 
-### Solutions
+### Solutionss
 
 ![990](D:\Typora\Pictures\990-1670532371122-3.jpg)
 
@@ -2930,7 +3333,7 @@ class UnionFind:
         return self.find(x) == self.find(y)
 
 
-class Solution:
+class Solutions:
     def equationsPossible(self, equations: List[str]) -> bool:
         uf = UnionFind(26)
         equations_same = [x for x in equations if x[1] == '=']
@@ -2979,7 +3382,7 @@ for:
 ### Try2
 
 ```
-class Solution:
+class Solutions:
     def breakPalindrome(self, p: str) -> str:
         p = list(p)
 
@@ -3000,7 +3403,7 @@ class Solution:
 
 if all the half of list is **a**, just **p[-1] = 'b'**
 
-### Solutions
+### Solutionss
 
 
 
@@ -3057,7 +3460,7 @@ We just want to see two increases
 means
 
 ```python
-class Solution:
+class Solutions:
     def increasingTriplet(self, n: List[int]) -> bool:
         D = []
         l = len(n)
@@ -3075,10 +3478,10 @@ class Solution:
         return False
 ```
 
-### Solutions
+### Solutionss
 
 ```python
-class Solution:
+class Solutions:
 def increasingTriplet(nums):
     first = second = float('inf')
     for n in nums:
@@ -3094,7 +3497,7 @@ def increasingTriplet(nums):
 $O(n)$
 
 ```Python
-class Solution:
+class Solutions:
     def increasingTriplet(self, nums: List[int]) -> bool:
         min1 = min2 = float("inf")
         for i, n in enumerate(nums):
@@ -3120,7 +3523,7 @@ $O(n^2)$
 ### Try1(Success)
 
 ```python
-class Solution:
+class Solutions:
     def largestPerimeter(self, nums: List[int]) -> int:
         #a+b>c,a>c-b
         sum = 0
@@ -3146,14 +3549,14 @@ class Solution:
         return S
 ```
 
-### Solutions
+### Solutionss
 
 #### Sort
 
 Just consider the last of them
 
 ```python
-class Solution(object):
+class Solutions(object):
     def largestPerimeter(self, A):
         A.sort()
         for i in xrange(len(A) - 3, -1, -1):
@@ -3196,12 +3599,12 @@ for 1:n
 
 ​	string.append()
 
-### Solutions
+### Solutionss
 
 #### Two Pointers
 
 ```python
-class Solution:
+class Solutions:
     def compress(self, chars):
         walker, runner = 0, 0
         while runner < len(chars):
@@ -3266,7 +3669,7 @@ Explanation: Since k is zero, we cannot delete anything. The compressed string i
 
 build a hashmap to store the count number
 
-### Solutions
+### Solutionss
 
 #### Dynamic Programming
 
@@ -3285,7 +3688,7 @@ four dimension dp
 
 
 ```Python
-class Solution:
+class Solutions:
     def getLengthOfOptimalCompression(self, s: str, k: int) -> int:
         @cache
         def dp(i, prev, prev_cnt, k):
@@ -3325,7 +3728,7 @@ class Solution:
 ```
 
 ```python
-class Solution:
+class Solutions:
     def getLengthOfOptimalCompression(self, s: str, k: int) -> int:
         # Find min lenth of the code starting from group ind, if there are res_k characters to delete and 
 		#       group ind needs to be increased by carry_over additional characters
@@ -3401,7 +3804,7 @@ split the substring first
 two parameters: len() and values
 
 ```Python
-class Solution:
+class Solutions:
     def countAndSay(self, n: int) -> str:
         string = "1"
 
@@ -3436,7 +3839,7 @@ class Solution:
         return string
 ```
 
-### Solutions
+### Solutionss
 
 The same as I think
 
@@ -3481,12 +3884,12 @@ for value:
 
 ​	if max
 
-### Solutions
+### Solutionss
 
 #### Heap
 
 ```python
-class Solution:
+class Solutions:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         dic = {}
         for i in words:
@@ -3515,7 +3918,7 @@ class Solution:
 #### Hashtable
 
 ```Python
-class Solution:
+class Solutions:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         dict = {}
         for x in words:
@@ -3664,7 +4067,7 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 That's code of Roman to Integer:
 
 ```python
-class Solution:
+class Solutions:
     def romanToInt(self, s: str) -> int:
         L = []
         S = 0
@@ -3699,7 +4102,7 @@ class Solution:
 That's Try1
 
 ```python
-class Solution:
+class Solutions:
     def intToRoman(self, num: int) -> str:
         res = ""
 
@@ -3759,10 +4162,10 @@ class Solution:
         return res
 ```
 
-### Solutions
+### Solutionss
 
 ```python
-class Solution:
+class Solutions:
     def intToRoman(self, N: int) -> str:
         val = [1000,900,500,400,100,90,50,40,10,9,5,4,1]
         rom = ["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"]
@@ -3789,7 +4192,7 @@ Given a string `sentence` containing only lowercase English letters, return `tru
 Use hashtable to store, len(H) == 26
 
 ```python
-class Solution:
+class Solutions:
     def checkIfPangram(self, sentence: str) -> bool:
         H ={}
 
@@ -3802,7 +4205,7 @@ class Solution:
 
 So fucking easy
 
-### Solutions
+### Solutionss
 
 #### Traverse 26 times
 
@@ -3811,7 +4214,7 @@ O(26*n)
 #### Set
 
 ```python
-class Solution:
+class Solutions:
     def checkIfPangram(self, sentence: str) -> bool:
         # Add every letter of 'sentence' to hash set 'seen'.
         seen = set(sentence)
@@ -3821,200 +4224,6 @@ class Solution:
 ```
 
 ### Review: Hashtable & Set
-
-## (75) Sorted Colors
-
-### Content
-
-Basic Sorted problem, first time C++ solution
-
-### Try1(Falied)
-
-### Solutions
-
-#### Sort function
-
-```cpp
-class Solution {
-public:
-    void sortColors(vector<int>& nums) {
-       sort(nums.begin(), nums.end());
-    }
-};
-```
-
-#### Keep a count of 0's 1's and 2's**
-
-Time complexity - O(2N)
-
-```cpp
-class Solution {
-public:
-    void sortColors(vector<int>& nums) {
-        int count0 = 0;
-        int count1 = 0; 
-        int count2  = 0;
-        for(int i =0; i< nums.size(); i++){
-            if(nums[i] == 0){
-                count0++;
-            }else if (nums[i] == 1){
-                count1++;
-            }else if (nums[i] ==2 ){
-                count2++;
-            }
-            
-         }
-        for(int i =0; i< count0; i++){
-            nums[i] =0;
-        }
-        for(int i =count0; i< (count1 + count0); i++){
-            nums[i] =1;
-        }
-        for(int i =(count1 + count0); i< nums.size(); i++){
-            nums[i] =2;
-        }
-        
-    }
-};
-```
-
-#### **Using 3 pointers**
-
-Time complexity - O(N)
-
-```cpp
-class Solution {
-public:
-    void sortColors(vector<int>& nums) {
-        int low =0; 
-        int high = nums.size()-1;
-        int mid =0;
-        
-        while(mid <= high){
-            if(nums[mid] == 0){
-                swap(nums[mid], nums[low]);
-                low++;
-                mid++;
-            }
-            else if(nums[mid] == 1){
-                mid++;
-            }
-            else {
-                swap(nums[mid], nums[high]);
-                high--;
-            }
-        }
-    }
-```
-
-### Review: Tradtional Sorting
-
-swap(nums[i], nums[j])
-
-## (128) Longest Consecutive Sequence
-
-### Content
-
-Given an unsorted array of integers `nums`, return *the length of the longest consecutive elements sequence.*
-
-You must write an algorithm that runs in `O(n)` time.
-
-### Try1(Failed)
-
-### Solutions
-
-#### Brute
-
-```python
-class Solution:
-    def longestConsecutive(self, nums):
-        longest_streak = 0
-
-        for num in nums:
-            current_num = num
-            current_streak = 1
-
-            while current_num + 1 in nums:
-                current_num += 1
-                current_streak += 1
-
-            longest_streak = max(longest_streak, current_streak)
-
-        return longest_streak
-```
-
-- Time complexity : O(n3)O(n^3)*O*(*n*3).
-
-  The outer loop runs exactly nn*n* times, and because `currentNum` increments by 1 during each iteration of the `while` loop, it runs in O(n)O(n)*O*(*n*) time. Then, on each iteration of the `while` loop, an O(n)O(n)*O*(*n*) lookup in the array is performed. Therefore, this brute force algorithm is really three nested O(n)O(n)*O*(*n*) loops, which compound multiplicatively to a cubic runtime.
-
-#### Sorting
-
-
-
-#### Set
-
-- Insert all the elements of the array into set.
-- **Check if the previous number (nums[i] - 1) is present in the set**, if it is then that number (nums[i]) is not the starting of the sequence.
-- If previous number is not present, that means that number is the starting of the sequence.
-- Make a count variable to count the length of the sequence and current variable to store the current number.
-- Now in a while loop, traverse and keep searching for consecutive elements until the condition is false.
-- Now store the maximum of longest_sequence and current length of the sequence.
-
-```c++
-class Solution {
-public:
-    int longestConsecutive(vector<int>& nums) {
-        unordered_set<int> s(nums.begin(),nums.end()); // this is faster
-        
-        // for(int i = 0; i<nums.size(); i++)
-        // {
-        //     s.insert(nums[i]);
-        // }
-        
-        int longest_sequence = 0;
-        
-        for(int i=0; i<nums.size(); i++)
-        {
-            if(s.find(nums[i] - 1)!=s.end())
-                continue;
-            
-            else
-            {
-                int count = 0;
-                int current_element = nums[i];
-                
-                while(s.find(current_element) != s.end())
-                {
-                    count++;
-                    current_element++;
-                }
-                
-                longest_sequence = max(longest_sequence,count);
-            }
-        }
-        
-        return longest_sequence;
-    }
-};
-```
-
-### Review: Hash Table & Union Find
-
-```cpp
-class Solution {
-public:
-    int longestConsecutive(vector<int>& nums) {
-        std::cout << "Hello World!\n";
-            return 0;
-    }
-};
-```
-
-Whether is the begin of the consecutive sequence:
-
-```
-if(s.find(nums[i] - 1)!=s.end())
-```
 
 
 
@@ -4030,7 +4239,7 @@ Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, re
 
 
 
-### Solutions
+### Solutionss
 
 ### Review:
 
@@ -4056,7 +4265,7 @@ Output: [1,2]
 
 
 
-### Solutions
+### Solutionss
 
 ### Review: 
 
@@ -4072,7 +4281,7 @@ A **substring** is a contiguous sequence of characters within the string.
 
 ### Try1(Failed)
 
-### Solutions
+### Solutionss
 
 #### Sliding Window
 
@@ -4178,7 +4387,7 @@ Use hashmap to store
 
 
 
-### Solutions
+### Solutionss
 
 
 
@@ -4188,10 +4397,10 @@ Use hashmap to store
 
 ### Try1(Failed)
 
-### Solutions
+### Solutionss
 
 ```c++
-class Solution {
+class Solutions {
 public:
     bool isToeplitzMatrix(vector<vector<int>>& matrix) {
 	for (int i = 0; i < matrix.size() - 1; i++) {
@@ -4236,7 +4445,7 @@ The maximum number is 9969.
 Use string
 
 ```python
-class Solution:
+class Solutions:
     def maximum69Number (self, num: int) -> int:
         nums = str(num)
         l = len(nums)
@@ -4249,7 +4458,7 @@ class Solution:
         return num
 ```
 
-### Solutions
+### Solutionss
 
 ### Review: Math
 
@@ -4273,7 +4482,7 @@ Upper case is 32 less than lowercase
 Every step forward, every judegement
 
 ```python
-class Solution:
+class Solutions:
     def makeGood(self, s: str) -> str:
         string = []
         stack = []
@@ -4292,12 +4501,12 @@ class Solution:
         return res
 ```
 
-### Solutions
+### Solutionss
 
 Using C++ to change characters, it has $O(1)$ Space Complexity
 
 ```C++
-class Solution {
+class Solutions {
 public:
     string makeGood(string s) {
         // Initialize 'end = 0' since the good string is empty.
@@ -4379,7 +4588,7 @@ both contract
 res = S1 + S2 - So
 
 ```python
-class Solution:
+class Solutions:
     def computeArea(self, ax1: int, ay1: int, ax2: int, ay2: int, bx1: int, by1: int, bx2: int, by2: int) -> int:
         S1 = (ax2 - ax1) * (ay2 - ay1)
         S2 = (bx2 - bx1) * (by2 - by1)
@@ -4392,7 +4601,7 @@ class Solution:
         return res
 ```
 
-### Solutions
+### Solutionss
 
 $O(1)$
 
@@ -4420,4 +4629,4 @@ if s in [2, 3, 5]
 
 else
 
-### Solutions
+### Solutionss
