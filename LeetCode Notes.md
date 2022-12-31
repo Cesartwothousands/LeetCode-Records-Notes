@@ -2757,6 +2757,117 @@ double myPow(double x, int n) {
 
 -----
 
+## (7) Reverse Integer
+
+### Content
+
+**Example 1:**
+
+```
+Input: x = 123
+Output: 321
+```
+
+**Example 2:**
+
+```
+Input: x = -123
+Output: -321
+```
+
+**Example 3:**
+
+```
+Input: x = 120
+Output: 21
+```
+
+### Try1(Success)
+
+```java
+if <0:
+	
+elif ==0:
+	
+l=len(s);
+
+class Solution {
+    public int reverse(int x) {
+        if (x==0){
+            return 0;
+        }
+
+        int y=0; 
+        if(x>0){
+            String xx=Integer.toString(x);
+            int l=xx.length();
+            boolean sig=false;
+
+            for(int i=l;i>0;i--){
+                String xxx=xx.substring(i-1, i);
+                int yy=Integer.parseInt(xxx);
+                if(!sig && yy!=0){
+                    sig=true;
+                }
+
+                if(sig){
+                    y+=(int) yy*Math.pow(10,i-1);
+                }
+                if(y>2147483646){return 0;}
+            }
+            
+            return y;
+
+        } else{
+            x=-x;
+            String xx=Integer.toString(x);
+            int l=xx.length();
+            boolean sig=false;
+
+            for(int i=l;i>0;i--){
+                String xxx=xx.substring(i-1, i);
+                int yy=Integer.parseInt(xxx);
+                if(!sig && yy!=0){
+                    sig=true;
+                }
+                if(sig){
+                    y+=(int) yy*Math.pow(10,i-1);
+                }
+                if(y>2147483646){return 0;}
+            }
+
+            return -y;
+        }
+    }
+}
+```
+
+### Solutions
+
+### Review: Math & Overflow
+
+-----
+
+## (528) Random Pick with Weight
+
+### Content
+
+
+
+### Try1
+
+
+
+### Solutions
+
+
+
+### Review:
+
+
+
+----
+
 
 
 -----
